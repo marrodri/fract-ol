@@ -4,7 +4,7 @@
 # define WIN_SZ 1000
 # include <math.h>
 # include <fcntl.h>
-# include "libft/libft.h"
+# include "includes/libft/libft.h"
 # include "mlx.h"
 
 typedef struct	s_map 
@@ -14,14 +14,6 @@ typedef struct	s_map
 }				t_map;
 
 typedef	struct	s_img
-{
-	char		*addr;
-	int			bpp;
-	int			endn;
-	int			sl;
-}				t_img;
-
-typedef struct	s_img
 {
 	char		*addr;
 	int			bpp;
