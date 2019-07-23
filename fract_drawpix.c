@@ -1,2 +1,0 @@
-
-//TODO draw pixels function

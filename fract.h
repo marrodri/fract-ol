@@ -9,8 +9,8 @@
 
 typedef struct	s_map 
 {
-	int x;
-	int y;
+	int			x;
+	int			y;
 }				t_map;
 
 typedef	struct	s_img
@@ -23,8 +23,20 @@ typedef	struct	s_img
 
 typedef struct	s_app
 {
-    
+    int			x_sz;
+	int			y_sz;
 } 
 t_app;
+
+typedef struct s_color
+{
+	int color_1;
+	int color_2;
+	int color_3;
+	int color_4;
+}				t_color;
+
+void fract_init(t_img *st_img);
+int		mlx_pixel_image(int x, int y, char *addr, int bpp);
 
 #endif
