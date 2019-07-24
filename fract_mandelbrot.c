@@ -39,7 +39,7 @@ void    mandelbrot_algo(double width, double height, t_img *st_img)
     {
         for(y = 0; y < height; y++)
         {
-            x0 = ft_map(x, 0, width, -2.5, 1);
+            x0 = ft_map(x, 0, width, -2.0, 1);
             y0 = ft_map(y, 0, height, -1, 1);
             i = 0;
             cx = x0;
@@ -52,21 +52,18 @@ void    mandelbrot_algo(double width, double height, t_img *st_img)
                 x0 = x_sq + cx;
                 y0 = y_sq + cy;
                 if((x0 * x0) + (y0 * y0) > 16)
-                {
                     break;
-                }
                 i++;
             }
             color = ft_map(i, 0, max_i, 0, 1);
             color = ft_map(sqrt(color),0,1,0,0x80ff00);
             if(i == max_i)
             {
-                double color = 0;
+                color = 0;
             }
             mlx_pixel_image(x, y, st_img->addr, st_img->bpp,color);
         }
     }
-
 }
 
 
