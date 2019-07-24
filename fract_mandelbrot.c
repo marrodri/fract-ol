@@ -51,7 +51,7 @@ void    mandelbrot_algo(double width, double height, t_img *st_img)
 
                 x0 = x_sq + cx;
                 y0 = y_sq + cy;
-                if((x0*x0) +(y0*y0) > 16)
+                if((x0 * x0) + (y0 * y0) > 16)
                 {
                     break;
                 }
@@ -63,10 +63,7 @@ void    mandelbrot_algo(double width, double height, t_img *st_img)
             {
                 double color = 0;
             }
-            mlx_pixel_image(x0 * 10, y0 * 10, st_img->addr, st_img->bpp,color);
-            mlx_pixel_image(x0 * 20, y0 * 20, st_img->addr, st_img->bpp,color);
-            mlx_pixel_image(x0 * 30, y0 * 30, st_img->addr, st_img->bpp,color);
-            mlx_pixel_image(x0 * 40, y0 * 40, st_img->addr, st_img->bpp,255);
+            mlx_pixel_image(x, y, st_img->addr, st_img->bpp,color);
         }
     }
 
