@@ -36,6 +36,7 @@ void    mandelbrot_algo(double width, double height, t_img *st_img, t_manset *st
     double old_zoom;
     cx = 0;
     cy = 0;
+    printf("new change\n");
     for(x = 0; x < width; x++)
     {
         for(y = 0; y < height; y++)
@@ -62,12 +63,8 @@ void    mandelbrot_algo(double width, double height, t_img *st_img, t_manset *st
             {
                 color = 0;
             }
-            mlx_pixel_image(x + st_manset->zoom, y + st_manset->zoom, st_img->addr, st_img->bpp,color);
-            if(st_manset->zoom != old_zoom)
-            {
-                old_zoom = st_manset->zoom;
-                mlx_pixel_image(x * st_manset->zoom, y * st_manset->zoom, st_img->addr, st_img->bpp,color);
-            }
+            mlx_pixel_image(x, y, st_img->addr, st_img->bpp,color);
+
         }
     }
 }

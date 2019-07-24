@@ -41,6 +41,9 @@ typedef struct	s_app
 {
 	int			x_sz;
 	int			y_sz;
+	void		*p_mlx;
+		void *p_win;
+	void *p_img;
 }				t_app;
 
 typedef struct	s_color
@@ -70,6 +73,7 @@ typedef struct	s_julset
 	double		ms_x;
 	double		ms_y;
 }				t_julset;
+
 
 void			fract_init(t_img *st_img);
 int				mlx_pixel_image(int x, int y, char *addr, int bpp, int color);

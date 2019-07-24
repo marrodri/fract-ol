@@ -51,27 +51,26 @@ int change_img(void *param)
 void fract_init(t_img *st_img)
 {
 	// todo initialize mlx and init here
-	void *p_mlx;
-	void *p_win;
-	void *p_img;
+	t_app	*st_app;
 	t_manset *st_manset;
 	t_julset *st_julset;
 
+	st_app = malloc(sizeof(t_app));
 	st_manset = malloc(sizeof(t_manset));
 	st_julset = malloc(sizeof(t_julset));
-	st_manset->zoom = 0;
-	p_mlx = mlx_init();
-	p_win = mlx_new_window(p_mlx, WIN_SZ, WIN_SZ, "test window");
-	p_img = mlx_new_image(p_mlx, WIN_SZ, WIN_SZ);
-	st_img->addr = mlx_get_data_addr(p_img, &st_img->bpp, 
+	st_manset->zoom = 3;
+	st_app->p_mlx = mlx_init();
+	st_app->p_win = mlx_new_window(st_app->p_mlx, WIN_SZ, WIN_SZ, "test window");
+	st_app->p_img = mlx_new_image(st_app->p_mlx, WIN_SZ, WIN_SZ);
+	st_img->addr = mlx_get_data_addr(st_app->p_img, &st_img->bpp, 
 		&st_img->sl, &st_img->endn);
 	st_img->bpp /= 8;
-	mlx_key_hook(p_win, esc_key, (void *)0);
-	mlx_hook(p_win, 17, (1L << 17), close_win_x, (void*)0);
-	mlx_hook(p_win, 6, (1L << 6), mouse_move, (void*)0);
-	mlx_hook(p_win, 4, (1L << 4) , mouse_press, (void*)st_manset);
+	mlx_key_hook(st_app->p_win, esc_key, (void *)0);
+	mlx_hook(st_app->p_win, 17, (1L << 17), close_win_x, (void*)0);
+	mlx_hook(st_app->p_win, 6, (1L << 6), mouse_move, (void*)0);
+	mlx_hook(st_app->p_win, 4, (1L << 4) , mouse_press, (void*)st_manset);
 	draw_mand(1000,1000, st_img, st_manset);
-	mlx_put_image_to_window(p_mlx, p_win, p_img, 0, 0);
-	mlx_loop(p_mlx);
+	mlx_put_image_to_window(st_app->p_mlx, st_app->p_win, st_app->p_img, 0, 0);
+	mlx_loop(st_app->p_mlx);
 	
 }
