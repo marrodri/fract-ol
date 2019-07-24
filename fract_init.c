@@ -69,10 +69,8 @@ void fract_init(t_img *st_img)
 	mlx_key_hook(p_win, esc_key, (void *)0);
 	mlx_hook(p_win, 17, (1L << 17), close_win_x, (void*)0);
 	mlx_hook(p_win, 6, (1L << 6), mouse_move, (void*)0);
-
-
 	mlx_hook(p_win, 4, (1L << 4) , mouse_press, (void*)st_manset);
-	draw_mand(1000,1000, st_img);
+	draw_mand(1000,1000, st_img, st_manset);
 	mlx_put_image_to_window(p_mlx, p_win, p_img, 0, 0);
 	mlx_loop(p_mlx);
 	

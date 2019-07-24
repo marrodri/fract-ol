@@ -20,7 +20,7 @@ double ft_map(double value, double cur_start, double cur_end, double new_start, 
 
 
 //TODO FINISH THIS ALGORITHM
-void    mandelbrot_algo(double width, double height, t_img *st_img)
+void    mandelbrot_algo(double width, double height, t_img *st_img, t_manset *st_manset)
 {
     double x = 0.0;
     double y = 0.0;
@@ -33,6 +33,7 @@ void    mandelbrot_algo(double width, double height, t_img *st_img)
     double x_sq = 0;
     double y_sq = 0;
     double color = 0x80ff00;
+    double old_zoom;
     cx = 0;
     cy = 0;
     for(x = 0; x < width; x++)
@@ -61,13 +62,18 @@ void    mandelbrot_algo(double width, double height, t_img *st_img)
             {
                 color = 0;
             }
-            mlx_pixel_image(x, y, st_img->addr, st_img->bpp,color);
+            mlx_pixel_image(x + st_manset->zoom, y + st_manset->zoom, st_img->addr, st_img->bpp,color);
+            if(st_manset->zoom != old_zoom)
+            {
+                old_zoom = st_manset->zoom;
+                mlx_pixel_image(x * st_manset->zoom, y * st_manset->zoom, st_img->addr, st_img->bpp,color);
+            }
         }
     }
 }
 
 
-void draw_mand(double width, double height, t_img *st_img)
+void    draw_mand(double width, double height, t_img *st_img, t_manset *st_manset)
 {
-    mandelbrot_algo(width, height, st_img);
+    mandelbrot_algo(width, height, st_img, st_manset);
 }

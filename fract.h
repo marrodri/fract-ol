@@ -73,5 +73,5 @@ typedef struct	s_julset
 
 void			fract_init(t_img *st_img);
 int				mlx_pixel_image(int x, int y, char *addr, int bpp, int color);
-void			draw_mand(double width, double height, t_img *st_img);
+void			draw_mand(double width, double height, t_img *st_img, t_manset *st_manset);
 #endif
