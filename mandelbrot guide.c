@@ -17,9 +17,9 @@ void mandelbrot_algo()
     minSlider = createSlider(0, 2.5, 2.5, 0.01); 
 //this is suppose to draw
     maxiterations = 100;
-    for (x = 0; x < width; x++)
+    for (x = 0; x < width; x++) //for each x pixel
     {
-        for (y =0 ; y < height; y++)
+        for (y =0 ; y < height; y++) //for each y pixel
         {
             var a = map(x, 0, width, -2, 2); //add the sliders for 
             var b = map(y, 0, height, -2, 2);

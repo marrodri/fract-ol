@@ -16,10 +16,7 @@ void fract_init(t_img *st_img)
 	st_img->bpp /= 8;
 
 	//TODO function to draw image of fract;
-	draw_mand();
-	mlx_pixel_image(500,500, st_img->addr, st_img->bpp);
-	
-	
+	draw_mand(1000,1000, st_img);
 	mlx_put_image_to_window(p_mlx, p_win, p_img, 0, 0);
 
 	mlx_loop(p_mlx);

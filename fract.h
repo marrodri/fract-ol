@@ -38,5 +38,6 @@ typedef struct s_color
 
 void fract_init(t_img *st_img);
 int		mlx_pixel_image(int x, int y, char *addr, int bpp);
+void draw_mand(double width, double height, t_img *st_img);
 
 #endif
