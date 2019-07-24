@@ -16,6 +16,23 @@ int		esc_key(int key, void *param)
 	return (0);
 }
 
+int mouse_move(int x, int y, void *param)
+{
+	printf("x|%d|, y|%d|\n",x,y);
+	return 0;
+}
+
+int mouse_press(int i, int x, int y, void *param)
+{
+	printf("i is |%d|, x is|%d|, y is|%d|\n", i, x, y);
+	int zoom = 0;
+	if(i == 5)
+	{
+		zoom++;
+		printf("zoom is |%d|\n", zoom);
+	}
+	return 0;
+}
 
 void fract_init(t_img *st_img)
 {
@@ -37,5 +54,7 @@ void fract_init(t_img *st_img)
 
 	mlx_key_hook(p_win, esc_key, (void *)0);
 	mlx_hook(p_win, 17, (1L << 17), close_win_x, (void*)0);
+	mlx_hook(p_win, 6, (1L << 6), mouse_move, (void*)0);
+	mlx_hook(p_win, 4, (1L << 4) , mouse_press, (void*) 0);
 	mlx_loop(p_mlx);
 }

@@ -12,6 +12,8 @@
 # include "includes/libft/libft.h"
 # include "mlx.h"
 
+#include <stdio.h>
+
 typedef struct	s_map 
 {
 	int			x;
@@ -40,6 +42,11 @@ typedef struct s_color
 	int color_3;
 	int color_4;
 }				t_color;
+
+typedef struct  s_mandelSet
+{
+	
+}				t_mandelSet;
 
 void fract_init(t_img *st_img);
 int		mlx_pixel_image(int x, int y, char *addr, int bpp, int color);
