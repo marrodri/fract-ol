@@ -34,6 +34,11 @@ int mouse_press(int i, int x, int y, void *param)
 	return 0;
 }
 
+int change_img(void *param)
+{
+
+}
+
 void fract_init(t_img *st_img)
 {
 	// todo initialize mlx and init here
@@ -49,12 +54,13 @@ void fract_init(t_img *st_img)
 	st_img->bpp /= 8;
 
 	//TODO function to draw image of fract;
-	draw_mand(1000,1000, st_img);
-	mlx_put_image_to_window(p_mlx, p_win, p_img, 0, 0);
-
 	mlx_key_hook(p_win, esc_key, (void *)0);
 	mlx_hook(p_win, 17, (1L << 17), close_win_x, (void*)0);
 	mlx_hook(p_win, 6, (1L << 6), mouse_move, (void*)0);
 	mlx_hook(p_win, 4, (1L << 4) , mouse_press, (void*) 0);
+	draw_mand(1000,1000, st_img);
+	mlx_put_image_to_window(p_mlx, p_win, p_img, 0, 0);
+	mlx_key_hook(p_win, change_img,(void *)0);
+
 	mlx_loop(p_mlx);
 }
