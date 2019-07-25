@@ -20,7 +20,7 @@ double ft_map(double value, double cur_start, double cur_end, double new_start, 
 
 
 //TODO FINISH THIS ALGORITHM
-void    mandelbrot_algo(double width, double height, t_img *st_img, t_manset *st_manset)
+void    mandelbrot_algo(double width, double height, double val, t_img *st_img, t_manset *st_manset)
 {
     double x = 0.0;
     double y = 0.0;
@@ -41,8 +41,8 @@ void    mandelbrot_algo(double width, double height, t_img *st_img, t_manset *st
     {
         for(y = 0; y < height; y++)
         {
-            x0 = ft_map(x, 0, width, -2.0, 1);
-            y0 = ft_map(y, 0, height, -1, 1);
+            x0 = ft_map(x, 0, width, -2.0, 1 + val);
+            y0 = ft_map(y, 0, height, -1, 1 + val);
             i = 0;
             cx = x0;
             cy = y0;
@@ -70,7 +70,7 @@ void    mandelbrot_algo(double width, double height, t_img *st_img, t_manset *st
 }
 
 
-void    draw_mand(double width, double height, t_img *st_img, t_manset *st_manset)
+void			draw_mand(double width, double height, double val, t_img *st_img, t_manset *st_manset)
 {
-    mandelbrot_algo(width, height, st_img, st_manset);
+    mandelbrot_algo(width, height, val, st_img, st_manset);
 }

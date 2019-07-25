@@ -33,24 +33,29 @@ int mandelbrot_zoom(int i, int x, int y, void *param)
 	// printf("i is |%d|, x is|%d|, y is|%d|\n", i, x, y);
 	if(i == 4)
 	{
-		st_img->zoom++;
+		st_img->zoom = st_img->zoom + 5;
 		printf("zoom in 4 is |%f|\n", st_img->zoom);
-		(((t_manset*)&param))->zoom = st_img->zoom;
+		// (((t_manset*)&param))->zoom = st_img->zoom;
+	mlx_put_image_to_window(st_img->p_mlx, st_img->p_win, st_img->p_img, 0, 0);
+		draw_mand(1000, 1000, st_img->zoom ,st_img, st_manset);
 	}
 	else if(i == 5)
 	{
-		st_img->zoom--;
+		st_img->zoom = st_img->zoom-5;
+
+		draw_mand(1000, 1000, st_img->zoom ,st_img, st_manset);
+		mlx_put_image_to_window(st_img->p_mlx, st_img->p_win, st_img->p_img, 0, 0);
 		printf("zoom out 5 is |%f|\n", st_img->zoom);
 	}
-	if(st_img->zoom > 0)
-	{
-		draw_mand(1000 + st_img->zoom, 1000 + st_img->zoom, st_img, st_manset);
-	}
-	else if(st_img->zoom < 0)
-	{
-		mlx_pixel_image(500, 500 - st_img->zoom, st_img->addr, st_img->bpp, 0x80ff00);
-	}
-	mlx_put_image_to_window(st_img->p_mlx, st_img->p_win, st_img->p_img, 0, 0);
+	// if(st_img->zoom > 0)
+	// {
+	// 	draw_mand(1000, 1000, st_img, st_manset);
+	// }
+	// else if(st_img->zoom < 0)
+	// {
+	// 	mlx_pixel_image(500, 500 - st_img->zoom, st_img->addr, st_img->bpp, 0x80ff00);
+	// }
+	// mlx_put_image_to_window(st_img->p_mlx, st_img->p_win, st_img->p_img, 0, 0);
 	return 0;
 }
 
@@ -71,7 +76,7 @@ void fract_init(t_img *st_img, char *fract)
 	if(!ft_strcmp(fract ,"mandelbrot"))
 	{
 
-	draw_mand(1000,1000, st_img, st_manset);
+	draw_mand(1000,1000, 0,st_img, st_manset);
 	mlx_hook(st_img->p_win, 4, (1L << 4) , mandelbrot_zoom, (void*)st_img);
 	mlx_put_image_to_window(st_img->p_mlx, st_img->p_win, st_img->p_img, 0, 0);
 	}
