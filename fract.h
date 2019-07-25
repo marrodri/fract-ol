@@ -31,19 +31,23 @@ typedef struct	s_map
 
 typedef	struct	s_img
 {
+	void		*p_mlx;
+	void		*p_win;
+	void		*p_img;
 	char		*addr;
 	int			bpp;
 	int			endn;
 	int			sl;
+	double		zoom;
 }				t_img;
 
 typedef struct	s_app
 {
 	int			x_sz;
 	int			y_sz;
-	void		*p_mlx;
-		void *p_win;
-	void *p_img;
+	// void		*p_mlx;
+	// 	void *p_win;
+	// void *p_img;
 }				t_app;
 
 typedef struct	s_color
