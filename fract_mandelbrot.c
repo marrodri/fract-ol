@@ -41,8 +41,8 @@ void    mandelbrot_algo(double width, double height, double val, t_img *st_img, 
     {
         for(y = 0; y < height; y++)
         {
-            x0 = ft_map(x, 0, width, -2.0, 1 + val);
-            y0 = ft_map(y, 0, height, -1, 1 + val);
+            x0 = ft_map(x, 0, width, -2.0 * val, 1 * val);
+            y0 = ft_map(y, 0, height, -1 * val, 1 * val);
             i = 0;
             cx = x0;
             cy = y0;
