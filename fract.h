@@ -73,9 +73,9 @@ typedef struct	s_manset
 
 typedef struct	s_julset
 {
-	int			zoom;
 	double		ms_x;
 	double		ms_y;
+	double		zoom;
 }				t_julset;
 
 
@@ -83,5 +83,6 @@ void			fract_init(t_img *st_img, char *fract);
 int				mlx_pixel_image(int x, int y, char *addr, int bpp, int color);
 void			draw_mand(double width, double height, double val, t_img *st_img, t_manset *st_manset);
 int				mandelbrot_zoom(int i, int x, int y, void *param);
-double ft_map(double value, double cur_start, double cur_end, double new_start, double new_end);
+void mandelbrot_set(t_img *st_img, t_manset *st_manset);
+double			ft_map(double value, double cur_start, double cur_end, double new_start, double new_end);
 #endif
