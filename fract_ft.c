@@ -8,6 +8,7 @@ int		mlx_pixel_image(int x, int y, char *addr, int bpp, int color)
 	*((int *)(addr + (x + y * WIN_SZ) * bpp)) = color;
 	return (1);
 }
+
 double ft_map(double value, double cur_start, double cur_end, double new_start, double new_end)
 {
     return ((value - cur_start) / (cur_end-cur_start)) * (new_end-new_start) + new_start;
