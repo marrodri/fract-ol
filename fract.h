@@ -45,9 +45,6 @@ typedef struct	s_app
 {
 	int			x_sz;
 	int			y_sz;
-	// void		*p_mlx;
-	// 	void *p_win;
-	// void *p_img;
 }				t_app;
 
 typedef struct	s_color

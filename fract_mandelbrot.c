@@ -23,14 +23,41 @@ int mandelbrot_zoom(int i, int x, int y, void *param)
 	return (0);
 }
 
+double color_iteration(double color, int i, int max_i, double x0, double y0, double cx, double cy, double val)
+{
+    double x_sq;
+    double y_sq;
+
+    while(i < max_i)
+    {
+        x_sq = (x0 * x0) - (y0 * y0);
+        y_sq = 2 * x0 * y0;
+
+        x0 = x_sq + cx + val;
+        y0 = y_sq + cy + val;
+        if((x0 * x0) + (y0 * y0) > 16)
+            break;
+        i++;
+    }
+    color = ft_map(i, 0, max_i, 0, 1);
+    color = ft_map(sqrt(color),0,1,0,0x80ff00);
+    if(i == max_i)
+    {
+        color = 0;
+    }
+    return color;
+}
+
 void			draw_mand(double width, double height, double val, t_img *st_img, t_manset *st_manset)
 {
-        double x = 0.0;
+    double x = 0.0;
     double y = 0.0;
     double x0 = 0;
     double y0 = 0;
+
     int i = 0;
     int max_i = 1000; //iterations
+
     double cx;
     double cy;
     double x_sq = 0;
@@ -49,23 +76,24 @@ void			draw_mand(double width, double height, double val, t_img *st_img, t_manse
             i = 0;
             cx = x0;
             cy = y0;
-            while(i < max_i)
-            {
-                x_sq = (x0 * x0) - (y0 * y0);
-                y_sq = 2 * x0 * y0;
+            color = color_iteration(color, i, max_i, x0, y0, cx, cy, val);
+            // while(i < max_i)
+            // {
+            //     x_sq = (x0 * x0) - (y0 * y0);
+            //     y_sq = 2 * x0 * y0;
 
-                x0 = x_sq + cx + val;
-                y0 = y_sq + cy + val;
-                if((x0 * x0) + (y0 * y0) > 16)
-                    break;
-                i++;
-            }
-            color = ft_map(i, 0, max_i, 0, 1);
-            color = ft_map(sqrt(color),0,1,0,0x80ff00);
-            if(i == max_i)
-            {
-                color = 0;
-            }
+            //     x0 = x_sq + cx + val;
+            //     y0 = y_sq + cy + val;
+            //     if((x0 * x0) + (y0 * y0) > 16)
+            //         break;
+            //     i++;
+            // }
+            // color = ft_map(i, 0, max_i, 0, 1);
+            // color = ft_map(sqrt(color),0,1,0,0x80ff00);
+            // if(i == max_i)
+            // {
+            //     color = 0;
+            // }
             mlx_pixel_image(x, y, st_img->addr, st_img->bpp,color);
 
         }
