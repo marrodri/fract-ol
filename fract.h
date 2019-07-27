@@ -39,8 +39,16 @@ typedef	struct	s_img
 	int			endn;
 	int			sl;
 	double		zoom;
-		double		x_ax;
+	double		x_ax;
 	double		y_ax;
+	double		x;
+	double		y;
+	double		x0;
+	double		y0;
+	double		cx;
+	double		cy;
+	double		x_sq;
+	double		color;
 }				t_img;
 
 typedef struct	s_app
@@ -79,8 +87,8 @@ typedef struct	s_julset
 
 void			fract_init(t_img *st_img, char *fract);
 int				mlx_pixel_image(int x, int y, char *addr, int bpp, int color);
-void			draw_mand(double width, double height, double val, t_img *st_img, t_manset *st_manset);
+void			draw_mand(double width, double height, double val, t_img *st_img);
 int				mandelbrot_zoom(int i, int x, int y, void *param);
-void mandelbrot_set(t_img *st_img, t_manset *st_manset);
+void mandelbrot_set(t_img *st_img);
 double ft_map(double value, double cur_start, double cur_end, double new_start, double new_end);
 #endif

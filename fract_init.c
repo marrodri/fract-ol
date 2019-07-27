@@ -35,7 +35,7 @@ int		mouse_move(int x, int y, void *param)
 
 void	fract_init(t_img *st_img, char *fract)
 {
-	t_manset *st_manset;
+	// t_manset *st_manset;
 	t_julset *st_julset;
 
 	st_img->p_mlx = mlx_init();
@@ -46,8 +46,8 @@ void	fract_init(t_img *st_img, char *fract)
 	st_img->bpp /= 8;
 	if (!ft_strcmp(fract, "mandelbrot"))
 	{
-		st_manset = malloc(sizeof(t_manset));
-		mandelbrot_set(st_img, st_manset);
+		// st_manset = malloc(sizeof(t_manset));
+		mandelbrot_set(st_img);
 	}
 	else if (!ft_strcmp(fract, "julia"))
 	{
