@@ -34,24 +34,27 @@ int     mandelbrot_zoom(int i, int x, int y, void *param)
 	return (0);
 }
 
+// double  color_iteration(double color, double x, double y, double x0, double y0)
 double  color_iteration(double color, double x0, double y0, double cx, double cy, double val)
 {
     double x_sq;
     double y_sq;
     int i = 0;
     int max_i = 1000;
-    while(i < max_i)
+    double xtemp = 0;
+    double ytemp = 0;
+    while((i < max_i))
     {
         x_sq = (x0 * x0) - (y0 * y0);
         y_sq = 2 * x0 * y0;
-        x0 = x_sq + cx + val;
-        y0 = y_sq + cy + val;
+        x0 = x_sq + cx;
+        y0 = y_sq + cy;
         if((x0 * x0) + (y0 * y0) > 16)
             break;
         i++;
     }
-    color = ft_map(i, 0, max_i, 0, 1);
-    color = ft_map(sqrt(color),0,1,0,0x80ff00);
+    color = ft_map(i, 0, max_i, 0, 1, val);
+    color = ft_map(sqrt(color),0,1,0,0x80ff00, val);
     if(i == max_i)
     {
         color = 0;
@@ -64,18 +67,18 @@ void    draw_mand(double width, double height, double val, t_img *st_img, t_mans
     int     i;
     int     max_i; //iterations
 
-    
     printf("new change\n");
-    for(st_manset->x = 0; st_manset->x < width; st_manset->x++)
+    for(st_manset->x = val; st_manset->x < width; st_manset->x++)
     {
-        for(st_manset->y = 0; st_manset->y < height; st_manset->y++)
+        for(st_manset->y = val; st_manset->y < height; st_manset->y++)
         {
-            st_manset->x0 = ft_map(st_manset->x, 0, width, -2.0, 1);
-            st_manset->y0 = ft_map(st_manset->y, 0, height, -1.5, 1.5);
+            st_manset->x0 = ft_map(st_manset->x, 0, width, -2.5, 1, st_manset->zoom);
+            st_manset->y0 = ft_map(st_manset->y, 0, height, -1.5, 1.5, st_manset->zoom);
    
             st_manset->cx = st_manset->x0;
             st_manset->cy = st_manset->y0;
             st_manset->color = color_iteration(st_manset->color, st_manset->x0, st_manset->y0, st_manset->cx, st_manset->cy, val);
+            // st_manset->color = color_iteration(st_manset->color, st_manset->x, st_manset->y, st_manset->x0, st_manset->y0);
             mlx_pixel_image(st_manset->x, st_manset->y, st_img->addr, st_img->bpp, st_manset->color);
         }
     }
