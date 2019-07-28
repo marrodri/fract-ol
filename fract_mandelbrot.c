@@ -39,7 +39,7 @@ int		mandelbrot_zoom(int i, int x, int y, void *param)
 		draw_mand(1000, 1000, st_img->zoom, st_img);
 	}
 	mlx_put_image_to_window(st_img->p_mlx, st_img->p_win, st_img->p_img, 0, 0);
-	return (0);
+	return (1);
 }
 
 int		mandelbrot_drag(int i, void *param)
@@ -50,29 +50,29 @@ int		mandelbrot_drag(int i, void *param)
 	
 	if(i == 123)//left = 123
 	{
-		st_img->x_ax -= 50;
+		st_img->x_ax -= 5;
 		draw_mand(1000, 1000, st_img->zoom, st_img);
 	}
 	
 	else if(i == 124)//right = 124
 	{
-		st_img->x_ax += 50;
+		st_img->x_ax += 5;
 		draw_mand(1000, 1000, st_img->zoom, st_img);
 	}
 
 	
 	else if(i == 126)//up = 126
 	{
-		st_img->y_ax -= 50;
+		st_img->y_ax -= 5;
 		draw_mand(1000, 1000, st_img->zoom, st_img);
 	}
 	
 	else if(i == 125)//down = 125
 	{
-		st_img->y_ax += 50;
+		st_img->y_ax += 5;
 		draw_mand(1000, 1000, st_img->zoom, st_img);
 	}
-	return 0;
+	return 1;
 }
 
 double	color_iteration(double color, double x0, double y0, double cx, double cy, double val)
@@ -106,15 +106,15 @@ void	draw_mand(double width, double height, double val, t_img *st_img)
 	int		max_i; //iterations
 
 	printf("new change in mandelbrot\n");
-	printf("x0=|%f|, y0=|%f|\n", st_img->x0, st_img->y0);
+	printf("x_ax = |%f|, y_ax = |%f|\n", st_img->x_ax, st_img->y_ax);
 	for(st_img->x =0; st_img->x < width; st_img->x++)
     {
         for(st_img->y =0; st_img->y < height; st_img->y++)
         {
             st_img->x0 = ft_map(st_img->x, 0 + st_img->x_ax, width + st_img->x_ax, -2.5, 1);
             st_img->y0 = ft_map(st_img->y, 0 + st_img->y_ax, height + st_img->y_ax, -1.5, 1.5);
-            st_img->cx = st_img->x0;
-            st_img->cy = st_img->y0;
+            st_img->cx = st_img->x0 ;
+            st_img->cy = st_img->y0 ;
             st_img->color = color_iteration(st_img->color, st_img->x0, st_img->y0, st_img->cx, st_img->cy, val);
             mlx_pixel_image(st_img->x, st_img->y, st_img->addr, st_img->bpp, st_img->color);
         }
