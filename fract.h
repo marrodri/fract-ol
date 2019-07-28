@@ -49,6 +49,7 @@ typedef	struct	s_img
 	double		cy;
 	double		x_sq;
 	double		color;
+	int			draw;
 }				t_img;
 
 typedef struct	s_app

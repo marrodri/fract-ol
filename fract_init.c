@@ -42,7 +42,7 @@ void	fract_init(t_img *st_img, char *fract)
 	st_img->p_img = mlx_new_image(st_img->p_mlx, WIN_SZ, WIN_SZ);
 	st_img->addr = mlx_get_data_addr(st_img->p_img, &st_img->bpp,
 		&st_img->sl, &st_img->endn);
-	st_img->zoom = 0;
+	st_img->zoom = 1;
 	st_img->bpp /= 8;
 	if (!ft_strcmp(fract, "mandelbrot"))
 	{
