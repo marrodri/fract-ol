@@ -116,15 +116,13 @@ void	draw_mand(double width, double height, double val, t_img *st_img)
             st_img->y0 = ft_map(st_img->y, (st_img->y_ax - st_img->zoom * height), (st_img->zoom * height + st_img->y_ax), -1.5, 1.5);
 			st_img->cx = st_img->x0;
             st_img->cy = st_img->y0;
-            // st_img->cx = st_img->x0 + st_img->zoom;
-            // st_img->cy = st_img->y0 + st_img->zoom;
             st_img->color = color_iteration(st_img->color, st_img->x0, st_img->y0, st_img->cx, st_img->cy, val);
             mlx_pixel_image(st_img->x, st_img->y, st_img->addr, st_img->bpp, st_img->color);
         }
     }
 }
 
-void	loop_mand(t_img *st_img)
+int	loop_mand(t_img *st_img)
 {
 	if (st_img->draw)
 	{
@@ -133,6 +131,7 @@ void	loop_mand(t_img *st_img)
 		mlx_put_image_to_window(st_img->p_mlx, st_img->p_win,
 			st_img->p_img, 0, 0);
 	}
+	return 1;
 }
 
 void    mandelbrot_set(t_img *st_img)
