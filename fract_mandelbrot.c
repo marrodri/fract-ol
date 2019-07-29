@@ -12,7 +12,6 @@
 
 #include "fract.h"
 
-//TODO implement properly the zoom function
 int		mandelbrot_zoom(int i, int x, int y, void *param)
 {
 	t_img		*st_img;

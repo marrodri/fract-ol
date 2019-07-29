@@ -53,6 +53,10 @@ int				mlx_pixel_image(int x, int y, char *addr, int bpp, int color);
 void			draw_mand(double width, double height, double val, t_img *st_img);
 int				mandelbrot_zoom(int i, int x, int y, void *param);
 void			mandelbrot_set(t_img *st_img);
+
+// int				julia_cursor(double x, double y, void *param);
+int				loop_jul(t_img *st_img, int x, int y, void *param);
+void			draw_julia(double width, double height, t_img *st_img);
 void			julia_set(t_img *st_img);
 double			ft_map(double value, double in_min, double val_max, double out_min, double out_max);
 #endif

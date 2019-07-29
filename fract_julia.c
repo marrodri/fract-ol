@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fract_julia.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marrodri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/29 16:29:22 by marrodri          #+#    #+#             */
+/*   Updated: 2019/07/29 16:29:23 by marrodri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 //todo set the julia set
 #include "fract.h"
 
-
+//doesnt work when int i is only placed
 int		julia_zoom(int i, int x, int y, void *param)
 {
 	t_img		*st_img;
@@ -56,22 +67,24 @@ int		julia_drag(int i, void *param)
 	return 1;
 }
 
-//fix the moving cursor
-int		julia_cursor(double x, double y, void *param)
+// only works with int not double.
+int		julia_cursor(int x, int y, void *param)
 {
-	t_img *st_img;
+	t_img	*st_img;
 
 	st_img = (param);
+	sleep(1);
+	// st_img->mouse_x = 0;
+	// st_img->mouse_y = 0;
 
 	printf("!!!!!!!!!!!!!accessed passed\n");
-	printf("julia cursor x|%f|, y|%f|\n", x, y);
+	// printf("julia cursor x|%f|, y|%f|\n", x, y);
 
 	st_img->mouse_x = ft_map(x, 0, 1000, -2, 2);
 	st_img->mouse_y = ft_map(y, 0, 1000, -1.5, 1.5);
 
 	printf("passed\n");
-	printf("mouse_x|%f|, mouse_y|%f|\n", x, y);
-	// st_img->draw = 1;
+	st_img->draw = 1; 
 	return (1);
 }
 
@@ -113,8 +126,8 @@ void	draw_julia(double width, double height, t_img *st_img)
         {
            // st_img->x0 = ft_map(st_img->x, (st_img->x_ax - st_img->zoom * width), (st_img->zoom * width + st_img->x_ax), -2.5, 1);
             // st_img->y0 = ft_map(st_img->y, (st_img->y_ax - st_img->zoom * height), (st_img->zoom * height + st_img->y_ax), -1.5, 1.5);
-            st_img->x0 = ft_map(st_img->x, (st_img->x_ax ), (width + st_img->x_ax), -2, 2);
-            st_img->y0 = ft_map(st_img->y, (st_img->y_ax ), (height + st_img->y_ax), -1.5, 1.5);
+            st_img->x0 = ft_map(st_img->x, (st_img->x_ax ) * st_img->zoom, (width + st_img->x_ax) * st_img->zoom, -2, 2);
+            st_img->y0 = ft_map(st_img->y, (st_img->y_ax ) * st_img->zoom, (height + st_img->y_ax) * st_img->zoom, -1.5, 1.5);
 			st_img->cx = st_img->x0;
             st_img->cy = st_img->y0;
             st_img->color = color_iter_jul(st_img->color, st_img->x0, st_img->y0, st_img->cx, st_img->cy, st_img);
@@ -143,8 +156,8 @@ void    julia_set(t_img *st_img)
         st_img->y0 = 0.0;
 		st_img->x_ax = 0;
 		st_img->y_ax = 0;
-		st_img->mouse_x = -0.285;
-		st_img->mouse_y = -0.01;
+		st_img->mouse_x = 0;
+		st_img->mouse_y = 0;
         st_img->color = 0x80ff00;
     	st_img->p_win = mlx_new_window(st_img->p_mlx, WIN_SZ, WIN_SZ, "mand");
 		st_img->draw = 1;
