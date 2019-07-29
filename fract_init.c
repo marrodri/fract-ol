@@ -27,11 +27,11 @@ int		esc_key(int key, void *param)
 	return (0);
 }
 
-int		mouse_move(int x, int y, void *param)
-{
-	printf("x|%d|, y|%d|\n", x, y);
-	return (0);
-}
+// int		mouse_move(int x, int y, void *param)
+// {
+// 	printf("x|%d|, y|%d|\n", x, y);
+// 	return (0);
+// }
 
 void	fract_init(t_img *st_img, char *fract)
 {
