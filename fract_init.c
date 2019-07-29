@@ -46,12 +46,10 @@ void	fract_init(t_img *st_img, char *fract)
 	st_img->bpp /= 8;
 	if (!ft_strcmp(fract, "mandelbrot"))
 	{
-		// st_manset = malloc(sizeof(t_manset));
 		mandelbrot_set(st_img);
 	}
 	else if (!ft_strcmp(fract, "julia"))
 	{
-		// st_julset = malloc(sizeof(t_julset));
 		julia_set(st_img);
 	}
 	mlx_key_hook(st_img->p_win, esc_key, (void *)0);

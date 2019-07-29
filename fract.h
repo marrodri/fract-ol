@@ -23,12 +23,6 @@
 # include "mlx.h"
 # include <stdio.h>
 
-typedef struct	s_map
-{
-	int			x;
-	int			y;
-}				t_map;
-
 typedef	struct	s_img
 {
 	void		*p_mlx;
@@ -49,42 +43,10 @@ typedef	struct	s_img
 	double		cy;
 	double		x_sq;
 	double		color;
+	double		mouse_x;
+	double		mouse_y;
 	int			draw;
 }				t_img;
-
-typedef struct	s_app
-{
-	int			x_sz;
-	int			y_sz;
-}				t_app;
-
-typedef struct	s_color
-{
-	int			color_1;
-	int			color_2;
-	int			color_3;
-	int			color_4;
-}				t_color;
-
-typedef struct	s_manset
-{
-	double		x;
-	double		y;
-	double		x0;
-	double		y0;
-	double		cx;
-	double		cy;
-	double		x_sq;
-	double		color;
-}				t_manset;
-
-typedef struct	s_julset
-{
-	double		ms_x;
-	double		ms_y;
-	double		zoom;
-}				t_julset;
-
 
 void			fract_init(t_img *st_img, char *fract);
 int				mlx_pixel_image(int x, int y, char *addr, int bpp, int color);

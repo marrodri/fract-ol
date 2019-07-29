@@ -18,27 +18,23 @@ int		mandelbrot_zoom(int i, int x, int y, void *param)
 	t_img		*st_img;
 	printf("input i for mandelbrot|%d|\n",i);
 	st_img = (param);
-
-	    st_img->x = 0.0;
-        st_img->y = 0.0;
-        st_img->x0 = 0.0;
-        st_img->y0 = 0.0;
-        st_img->cx = 0.0;
-        st_img->cy = 0.0;
-        st_img->color = 0;
+	st_img->x = 0.0;
+	st_img->y = 0.0;
+	st_img->x0 = 0.0;
+	st_img->y0 = 0.0;
+	st_img->cx = 0.0;
+	st_img->cy = 0.0;
+	st_img->color = 0;
 	if (i == 5)
 	{
 		st_img->zoom *= 1.1;
 		st_img->draw = 1;
-		// draw_mand(1000, 1000, st_img->zoom, st_img);
 	}
 	else if (i == 4)
 	{
 		st_img->zoom /= 1.1;
 		st_img->draw = 1;
-		// draw_mand(1000, 1000, st_img->zoom, st_img);
 	}
-	// mlx_put_image_to_window(st_img->p_mlx, st_img->p_win, st_img->p_img, 0, 0);
 	return (1);
 }
 
@@ -48,29 +44,21 @@ int		mandelbrot_drag(int i, void *param)
 	st_img = (param);
 	printf("keyboard input code i = |%d|\n", i);
 	
-	if(i == 123)//left = 123
+	if(i == 123) //left = 123
 	{
-		st_img->x_ax -= 15 * st_img->zoom;
-		// draw_mand(1000, 1000, st_img->zoom, st_img);
+		st_img->x_ax -= 5 * st_img->zoom;
 	}
-	
-	else if(i == 124)//right = 124
+	else if(i == 124) //right = 124
 	{
-		st_img->x_ax += 15 * st_img->zoom;
-		// draw_mand(1000, 1000, st_img->zoom, st_img);
+		st_img->x_ax += 5 * st_img->zoom;
 	}
-
-	
-	else if(i == 126)//up = 126
+	else if(i == 126) //up = 126
 	{
 		st_img->y_ax -= 15 * st_img->zoom;
-		// draw_mand(1000, 1000, st_img->zoom, st_img);
 	}
-	
-	else if(i == 125)//down = 125
+	else if(i == 125) //down = 125
 	{
 		st_img->y_ax += 15 * st_img->zoom;
-		// draw_mand(1000, 1000, st_img->zoom, st_img);
 	}
 	st_img->draw = 1;
 	return 1;
@@ -112,8 +100,11 @@ void	draw_mand(double width, double height, double val, t_img *st_img)
     {
         for(st_img->y =0; st_img->y < height; st_img->y++)
         {
-            st_img->x0 = ft_map(st_img->x, (st_img->x_ax - st_img->zoom * width), (st_img->zoom * width + st_img->x_ax), -2.5, 1);
-            st_img->y0 = ft_map(st_img->y, (st_img->y_ax - st_img->zoom * height), (st_img->zoom * height + st_img->y_ax), -1.5, 1.5);
+			// st_img->x0 = ft_map(st_img->x, (st_img->x_ax - st_img->zoom * width), (st_img->zoom * width + st_img->x_ax), -2.5, 1);
+            // st_img->y0 = ft_map(st_img->y, (st_img->y_ax - st_img->zoom * height), (st_img->zoom * height + st_img->y_ax), -1.5, 1.5);
+			//fix this to zoom to mouse pointer
+            st_img->x0 = ft_map(st_img->x, st_img->x_ax * (st_img->zoom), (width + st_img->x_ax) * st_img->zoom, -2.5, 1);
+            st_img->y0 = ft_map(st_img->y, st_img->y_ax * (st_img->zoom), (height + st_img->y_ax) * st_img->zoom, -1.5, 1.5);
 			st_img->cx = st_img->x0;
             st_img->cy = st_img->y0;
             st_img->color = color_iter_mand(st_img->color, st_img->x0, st_img->y0, st_img->cx, st_img->cy, val);
