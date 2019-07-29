@@ -36,7 +36,7 @@ int		mouse_move(int x, int y, void *param)
 void	fract_init(t_img *st_img, char *fract)
 {
 	// t_manset *st_manset;
-	t_julset *st_julset;
+	// t_julset *st_julset;
 
 	st_img->p_mlx = mlx_init();
 	st_img->p_img = mlx_new_image(st_img->p_mlx, WIN_SZ, WIN_SZ);

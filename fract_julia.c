@@ -61,7 +61,7 @@ int		julia_drag(int i, void *param)
 int julia_cursor(double x, double y, void *param)
 {
 	t_img *st_img;
-		printf("x|%d|, y|%d|\n", x, y);
+		printf("x|%f|, y|%f|\n", x, y);
 	
 	return (1);
 }
@@ -76,8 +76,8 @@ double	color_iter_jul(double color, double x0, double y0, double cx, double cy, 
 	{
 		x_sq = (x0 * x0) - (y0 * y0);
 		y_sq = 2 * x0 * y0;
-		x0 = x_sq + 0.835;
-		y0 = y_sq + 0.2321;
+		x0 = x_sq - 0.835;
+		y0 = y_sq - 0.2321;
 		if ((x0 * x0) + (y0 * y0) > 16)
 			break;
 		i++;
@@ -104,7 +104,7 @@ void	draw_julia(double width, double height, double val, t_img *st_img)
         {
            // st_img->x0 = ft_map(st_img->x, (st_img->x_ax - st_img->zoom * width), (st_img->zoom * width + st_img->x_ax), -2.5, 1);
             // st_img->y0 = ft_map(st_img->y, (st_img->y_ax - st_img->zoom * height), (st_img->zoom * height + st_img->y_ax), -1.5, 1.5);
-            st_img->x0 = ft_map(st_img->x, (st_img->x_ax ), (width + st_img->x_ax), -2.5, 1);
+            st_img->x0 = ft_map(st_img->x, (st_img->x_ax ), (width + st_img->x_ax), -2, 2);
             st_img->y0 = ft_map(st_img->y, (st_img->y_ax ), (height + st_img->y_ax), -1.5, 1.5);
 			st_img->cx = st_img->x0;
             st_img->cy = st_img->y0;
@@ -140,6 +140,6 @@ void    julia_set(t_img *st_img)
 		draw_julia(1000, 1000, 0, st_img);
 		mlx_hook(st_img->p_win, 2, 2, julia_drag, (void*)st_img);
 		mlx_hook(st_img->p_win, 4, (1L << 4), julia_zoom, (void*)st_img);
-		mlx_hook(st_img->win,);
+		// mlx_hook(st_img->win,);
 		mlx_loop_hook(st_img->p_mlx, loop_jul, st_img);
 }
