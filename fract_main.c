@@ -24,13 +24,12 @@ int	fract_checker(char *input)
 
 int	main(int argc, char **argv)
 {
-	void	*p_mlx;
-	void	*p_win;
-	void	*p_img;
 	t_img	*st_img;
+	t_map	*st_map;
 
 	if (argc >= 2 && fract_checker(argv[1]))
 	{
+		st_map = malloc(sizeof(t_map));
 		st_img = malloc(sizeof(t_img));
 		fract_init(st_img, argv[1]);
 	}

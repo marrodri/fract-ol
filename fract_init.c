@@ -27,7 +27,7 @@ int		esc_key(int key, void *param)
 	return (0);
 }
 
-void	fract_init(t_img *st_img, char *fract)
+void	fract_init(t_img *st_img, t_map *st_map, char *fract)
 {
 	st_img->p_mlx = mlx_init();
 	st_img->p_img = mlx_new_image(st_img->p_mlx, WIN_SZ, WIN_SZ);
@@ -37,7 +37,7 @@ void	fract_init(t_img *st_img, char *fract)
 	st_img->bpp /= 8;
 	if (!ft_strcmp(fract, "mandelbrot"))
 	{
-		mandelbrot_set(st_img);
+		mandelbrot_set(st_img, st_map);
 	}
 	else if (!ft_strcmp(fract, "julia"))
 	{

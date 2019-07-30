@@ -25,6 +25,8 @@
 
 typedef	struct	s_img
 {
+	int		x;
+	int		y;
 	void		*p_mlx;
 	void		*p_win;
 	void		*p_img;
@@ -35,14 +37,9 @@ typedef	struct	s_img
 	double		zoom;
 	double		x_ax;
 	double		y_ax;
-	int		x;
-	int		y;
 	double		x0;
 	double		y0;
-	double		cx;
-	double		cy;
-	double		x_sq;
-	double		color;
+	int		color;
 	double		mouse_x;
 	double		mouse_y;
 	int			draw;
@@ -50,19 +47,18 @@ typedef	struct	s_img
 
 typedef struct	s_map
 {
-	double		value;
 	double		in_min;
 	double		in_max;
 	double		out_min;
 	double		out_max;
 }				t_map;
 
-void			fract_init(t_img *st_img, char *fract);
+void			fract_init(t_img *st_img, t_map *st_map, char *fract);
 int				mlx_pixel_image(t_img *st_img);
 double			ft_map(double value, double in_min, double val_max, double out_min, double out_max);
 int				ft_fract_zoom(int i, int x, int y, void *param);
 int				ft_fract_drag(int i, void *param);
 int				ft_fract_cursor(int x, int y, void *param);
-void			mandelbrot_set(t_img *st_img);
+void			mandelbrot_set(t_img *st_img, t_map *st_map);
 void			julia_set(t_img *st_img);
 #endif
