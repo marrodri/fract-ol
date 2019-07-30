@@ -12,10 +12,14 @@
 
 #include "fract.h"
 
-int	fract_checker()
+int	fract_checker(char *input)
 {
-	//TODO set an input checker if the fractal exists, if not return 0;
-	return (0);
+	if (!ft_strcmp(input, "mandelbrot") || !ft_strcmp(input, "julia"))
+	{
+		return (1);
+	}
+	else
+		return (0);
 }
 
 int	main(int argc, char **argv)
@@ -25,7 +29,7 @@ int	main(int argc, char **argv)
 	void	*p_img;
 	t_img	*st_img;
 
-	if (argc >= 2)
+	if (argc >= 2 && fract_checker(argv[1]))
 	{
 		st_img = malloc(sizeof(t_img));
 		fract_init(st_img, argv[1]);

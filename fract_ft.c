@@ -20,6 +20,15 @@ int		mlx_pixel_image(int x, int y, char *addr, int bpp, int color)
 	return (1);
 }
 
+//UPDATE PARAMETERS TO A WHOLE STRUCT THIS FUNC
+// int		mlx_pixel_image(t_img *st_img)
+// {
+// 	if (st_img->x < 0 || st_img->y < 0 || st_img->x >= WIN_SZ || st_img->y >= WIN_SZ)
+// 		return (0);
+// 	*((int *)(st_img->addr + (st_img->x + st_img->y * WIN_SZ) * st_img->bpp)) = st_img->color;
+// 	return (1);
+// }
+
 double	ft_map(double value, double in_min, double in_max, double out_min, double out_max)
 {
 	return ((value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);

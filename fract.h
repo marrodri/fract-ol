@@ -48,7 +48,7 @@ typedef	struct	s_img
 	int			draw;
 }				t_img;
 
-typedef struct s_map
+typedef struct	s_map
 {
 	double		value;
 	double		in_min;
