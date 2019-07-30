@@ -13,10 +13,10 @@
 #ifndef FRACT_H
 # define FRACT_H
 # define WIN_SZ 1000
-# define MS_SCROLL_UP 4
-# define MS_SCROLL_DW 5
-# define MS_SCROLL_LF 6
-# define MS_SCROLL_RT 7
+# define K_DRAG_UP 126
+# define K_DRAG_DW 125
+# define K_DRAG_LF 123
+# define K_DRAG_RT 124
 # include <pthread.h>
 # include <math.h>
 # include "includes/libft/libft.h"
@@ -50,13 +50,13 @@ typedef	struct	s_img
 
 void			fract_init(t_img *st_img, char *fract);
 int				mlx_pixel_image(int x, int y, char *addr, int bpp, int color);
-void			draw_mand(double width, double height, double val, t_img *st_img);
-int				mandelbrot_zoom(int i, int x, int y, void *param);
+// int				mandelbrot_zoom(int i, int x, int y, void *param);
 void			mandelbrot_set(t_img *st_img);
-
-// int				julia_cursor(double x, double y, void *param);
-int				loop_jul(t_img *st_img, int x, int y, void *param);
-void			draw_julia(double width, double height, t_img *st_img);
 void			julia_set(t_img *st_img);
+// int				loop_jul(t_img *st_img, int x, int y, void *param);
+// void			draw_julia(double width, double height, t_img *st_img);
 double			ft_map(double value, double in_min, double val_max, double out_min, double out_max);
+int				ft_fract_zoom(int i, int x, int y, void *param);
+int				ft_fract_drag(int i, void *param);
+int				ft_fract_cursor(int x, int y, void *param);
 #endif

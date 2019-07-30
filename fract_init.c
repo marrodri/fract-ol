@@ -27,17 +27,8 @@ int		esc_key(int key, void *param)
 	return (0);
 }
 
-// int		mouse_move(int x, int y, void *param)
-// {
-// 	printf("x|%d|, y|%d|\n", x, y);
-// 	return (0);
-// }
-
 void	fract_init(t_img *st_img, char *fract)
 {
-	// t_manset *st_manset;
-	// t_julset *st_julset;
-
 	st_img->p_mlx = mlx_init();
 	st_img->p_img = mlx_new_image(st_img->p_mlx, WIN_SZ, WIN_SZ);
 	st_img->addr = mlx_get_data_addr(st_img->p_img, &st_img->bpp,
