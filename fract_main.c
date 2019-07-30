@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 	{
 		st_map = malloc(sizeof(t_map));
 		st_img = malloc(sizeof(t_img));
-		fract_init(st_img, argv[1]);
+		fract_init(st_img, st_map, argv[1]);
 	}
 	else
 	{

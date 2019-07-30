@@ -84,6 +84,8 @@ void		mandelbrot_set(t_img *st_img, t_map *st_map)
 	st_img->color = 0x80ff00;
 	st_img->p_win = mlx_new_window(st_img->p_mlx, WIN_SZ, WIN_SZ, "mand");
 	st_img->draw = 1;
+	st_map->in_min = st_img->x_ax * (st_img->zoom);
+	st_map->in_max = 
 	draw_mand(1000, 1000, st_img);
 	mlx_hook(st_img->p_win, 2, 2, ft_fract_drag, (void*)st_img);
 	mlx_hook(st_img->p_win, 4, (1L << 4), ft_fract_zoom, (void*)st_img);
