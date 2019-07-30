@@ -48,7 +48,7 @@ int		ft_fract_drag(int i, void *param)
 	t_img	*st_img;
 
 	st_img = (param);
-	if(i == K_DRAG_LF) 
+	if (i == K_DRAG_LF)
 	{
 		st_img->x_ax -= 5 * st_img->zoom;
 	}
@@ -56,11 +56,11 @@ int		ft_fract_drag(int i, void *param)
 	{
 		st_img->x_ax += 5 * st_img->zoom;
 	}
-	else if (i == K_DRAG_UP) 
+	else if (i == K_DRAG_UP)
 	{
 		st_img->y_ax -= 15 * st_img->zoom;
 	}
-	else if (i == K_DRAG_DW) 
+	else if (i == K_DRAG_DW)
 	{
 		st_img->y_ax += 15 * st_img->zoom;
 	}
@@ -75,6 +75,6 @@ int		ft_fract_cursor(int x, int y, void *param)
 	st_img = (param);
 	st_img->mouse_x = ft_map(x, 0, 1000, -2, 2);
 	st_img->mouse_y = ft_map(y, 0, 1000, -1.5, 1.5);
-	st_img->draw = 1; 
+	st_img->draw = 1;
 	return (1);
 }
