@@ -35,8 +35,8 @@ typedef	struct	s_img
 	double		zoom;
 	double		x_ax;
 	double		y_ax;
-	double		x;
-	double		y;
+	int		x;
+	int		y;
 	double		x0;
 	double		y0;
 	double		cx;
@@ -58,7 +58,7 @@ typedef struct	s_map
 }				t_map;
 
 void			fract_init(t_img *st_img, char *fract);
-int				mlx_pixel_image(int x, int y, char *addr, int bpp, int color);
+int				mlx_pixel_image(t_img *st_img);
 double			ft_map(double value, double in_min, double val_max, double out_min, double out_max);
 int				ft_fract_zoom(int i, int x, int y, void *param);
 int				ft_fract_drag(int i, void *param);

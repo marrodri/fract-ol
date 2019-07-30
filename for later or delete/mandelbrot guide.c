@@ -55,3 +55,7 @@ void mandelbrot_algo()
         }
     }
 }
+
+//FOR LATER USE THIS WHEN ZOOMING WITH MOUSE!!!!!! 
+// st_img->x0 = ft_map(st_img->x, (st_img->x_ax - st_img->zoom * width), (st_img->zoom * width + st_img->x_ax), -2.5, 1);
+// st_img->y0 = ft_map(st_img->y, (st_img->y_ax - st_img->zoom * height), (st_img->zoom * height + st_img->y_ax), -1.5, 1.5);

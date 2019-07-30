@@ -48,15 +48,12 @@ void	draw_mand(double width, double height, double val, t_img *st_img)
 		st_img->y = 0;
 		while (st_img->y < height)
 		{
-			// st_img->x0 = ft_map(st_img->x, (st_img->x_ax - st_img->zoom * width), (st_img->zoom * width + st_img->x_ax), -2.5, 1);
-			// st_img->y0 = ft_map(st_img->y, (st_img->y_ax - st_img->zoom * height), (st_img->zoom * height + st_img->y_ax), -1.5, 1.5);
-			//fix this to zoom to mouse pointer
             st_img->x0 = ft_map(st_img->x, st_img->x_ax * (st_img->zoom), (width + st_img->x_ax) * st_img->zoom, -2.5, 1);
             st_img->y0 = ft_map(st_img->y, st_img->y_ax * (st_img->zoom), (height + st_img->y_ax) * st_img->zoom, -1.5, 1.5);
 			st_img->cx = st_img->x0;
             st_img->cy = st_img->y0;
             st_img->color = color_iter_mand(st_img->color, st_img->x0, st_img->y0, st_img->cx, st_img->cy, val);
-            mlx_pixel_image(st_img->x, st_img->y, st_img->addr, st_img->bpp, st_img->color);
+            mlx_pixel_image(st_img);
 			st_img->y++;
 		}
 		st_img->x++;
