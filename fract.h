@@ -47,8 +47,6 @@ typedef	struct	s_img
 
 typedef struct	s_map
 {
-	double		in_min;
-	double		in_max;
 	double		out_min;
 	double		out_max;
 }				t_map;

@@ -12,7 +12,7 @@
 
 #include "fract.h"
 
-double		color_iter_mand(double color, double x0, double y0, double cx, double cy, double val)
+double		color_iter_mand(double color, double x0, double y0, double cx, double cy)
 {
 	double	x_sq;
 	double	y_sq;
@@ -40,22 +40,24 @@ double		color_iter_mand(double color, double x0, double y0, double cx, double cy
 	return (color);
 }
 
-void		draw_mand(double width, double height, t_img *st_img)
+void		draw_mand(t_img *st_img)
 {
 	double cx;
 	double cy;
 
 	st_img->x = 0;
-	while (st_img->x < width)
+	while (st_img->x < WIN_SZ)
 	{
 		st_img->y = 0;
-		while (st_img->y < height)
+		while (st_img->y < WIN_SZ)
 		{
-			st_img->x0 = ft_map(st_img->x, st_img->x_ax * (st_img->zoom), (width + st_img->x_ax) * st_img->zoom, -2.5, 1);
-			st_img->y0 = ft_map(st_img->y, st_img->y_ax * (st_img->zoom), (height + st_img->y_ax) * st_img->zoom, -1.5, 1.5);
+			// st_map->in_min = st_img->x_ax * (st_img->zoom);
+			// st_map->in_max = (WIN_SZ + st_img->x_ax) * st_img->zoom;
+			st_img->x0 = ft_map(st_img->x, st_img->x_ax * (st_img->zoom), (WIN_SZ + st_img->x_ax) * st_img->zoom, -2.5, 1);
+			st_img->y0 = ft_map(st_img->y, st_img->y_ax * (st_img->zoom), (WIN_SZ + st_img->y_ax) * st_img->zoom, -1.5, 1.5);
 			cx = st_img->x0;
 			cy = st_img->y0;
-			st_img->color = color_iter_mand(st_img->color, st_img->x0, st_img->y0, cx, cy, val);
+			st_img->color = color_iter_mand(st_img->color, st_img->x0, st_img->y0, cx, cy);
 			mlx_pixel_image(st_img);
 			st_img->y++;
 		}
@@ -67,7 +69,7 @@ int			loop_mand(t_img *st_img)
 {
 	if (st_img->draw)
 	{
-		draw_mand(1000, 1000, st_img->zoom, st_img);
+		draw_mand(st_img);
 		st_img->draw = 0;
 		mlx_put_image_to_window(st_img->p_mlx, st_img->p_win,
 			st_img->p_img, 0, 0);
@@ -84,9 +86,9 @@ void		mandelbrot_set(t_img *st_img, t_map *st_map)
 	st_img->color = 0x80ff00;
 	st_img->p_win = mlx_new_window(st_img->p_mlx, WIN_SZ, WIN_SZ, "mand");
 	st_img->draw = 1;
-	st_map->in_min = st_img->x_ax * (st_img->zoom);
-	st_map->in_max = 
-	draw_mand(1000, 1000, st_img);
+	// st_map->in_min = st_img->x_ax * (st_img->zoom);
+	// st_map->in_max = (WIN_SZ + st_img->x_ax) * st_img->zoom;
+	draw_mand(st_img);
 	mlx_hook(st_img->p_win, 2, 2, ft_fract_drag, (void*)st_img);
 	mlx_hook(st_img->p_win, 4, (1L << 4), ft_fract_zoom, (void*)st_img);
 	mlx_loop_hook(st_img->p_mlx, loop_mand, st_img);
