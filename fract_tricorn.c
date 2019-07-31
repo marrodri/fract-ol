@@ -1,18 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   fract_mandelbrot.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: marrodri <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/25 22:16:31 by marrodri          #+#    #+#             */
-/*   Updated: 2019/07/26 23:12:17 by marrodri         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "fract.h"
 
-double		color_iter_mand(double color, double x0, double y0, double cx, double cy)
+double		color_iter_tri(double color, double x0, double y0, double cx, double cy)
 {
 	double	x_sq;
 	double	y_sq;
@@ -40,7 +29,7 @@ double		color_iter_mand(double color, double x0, double y0, double cx, double cy
 	return (color);
 }
 
-void		draw_mand(t_img *st_img)
+void		draw_tri(t_img *st_img)
 {
 	double cx;
 	double cy;
@@ -65,7 +54,7 @@ void		draw_mand(t_img *st_img)
 	}
 }
 
-int			loop_mand(t_img *st_img)
+int			loop_tri(t_img *st_img)
 {
 	if (st_img->draw)
 	{
@@ -77,7 +66,7 @@ int			loop_mand(t_img *st_img)
 	return (1);
 }
 
-void		mandelbrot_set(t_img *st_img, t_map *st_map)
+void		tricorn_set(t_img *st_img, t_map *st_map)
 {
 	st_img->x0 = 0.0;
 	st_img->y0 = 0.0;
@@ -91,5 +80,5 @@ void		mandelbrot_set(t_img *st_img, t_map *st_map)
 	draw_mand(st_img);
 	mlx_hook(st_img->p_win, 2, 2, ft_fract_drag, (void*)st_img);
 	mlx_hook(st_img->p_win, 4, (1L << 4), ft_fract_zoom, (void*)st_img);
-	mlx_loop_hook(st_img->p_mlx, loop_mand, st_img);
+	mlx_loop_hook(st_img->p_mlx, loop_tri, st_img);
 }

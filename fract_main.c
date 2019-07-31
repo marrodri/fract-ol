@@ -14,7 +14,7 @@
 
 int	fract_checker(char *input)
 {
-	if (!ft_strcmp(input, "mandelbrot") || !ft_strcmp(input, "julia"))
+	if (!ft_strcmp(input, "mandelbrot") || !ft_strcmp(input, "julia")|| !ft_strcmp(input, "tricorn"))
 	{
 		return (1);
 	}
@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		ft_putstr("./fract <mandelbrot, julia> \n");
+		ft_putstr("./fract <mandelbrot, julia, tricorn> \n");
 	}
 	return (0);
 }

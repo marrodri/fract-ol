@@ -59,4 +59,5 @@ int				ft_fract_drag(int i, void *param);
 int				ft_fract_cursor(int x, int y, void *param);
 void			mandelbrot_set(t_img *st_img, t_map *st_map);
 void			julia_set(t_img *st_img);
+void		tricorn_set(t_img *st_img, t_map *st_map);
 #endif
