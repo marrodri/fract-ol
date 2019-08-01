@@ -24,7 +24,7 @@ double		color_iter_mand(double color, double x0, double y0, double cx, double cy
 	while (i < max_i)
 	{
 		x_sq = (x0 * x0) - (y0 * y0);
-		y_sq = -2 * x0 * y0;
+		y_sq = 2 * x0 * y0;
 		x0 = x_sq + cx;
 		y0 = y_sq + cy;
 		if ((x0 * x0) + (y0 * y0) > 16)

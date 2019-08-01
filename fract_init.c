@@ -43,6 +43,10 @@ void	fract_init(t_img *st_img, t_map *st_map, char *fract)
 	{
 		julia_set(st_img);
 	}
+	else if(!ft_strcmp(fract, "tricorn"))
+	{
+		tricorn_set(st_img, st_map);
+	}
 	mlx_key_hook(st_img->p_win, esc_key, (void *)0);
 	mlx_hook(st_img->p_win, 17, (1L << 17), close_win_x, (void*)0);
 	mlx_loop(st_img->p_mlx);

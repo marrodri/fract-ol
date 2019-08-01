@@ -2,18 +2,23 @@
 #include <stdlib.h>
 #include <pthread.h>
 
+//the sum created by the background thread
+long long sum = 0;
+
+
 //thread function to generate sum of 0 to N
 void *sum_runner(void *arg)
 {
 	long long *limit_ptr = (long long*) arg;
 	long long limit = *limit_ptr;
 
-	long long sum = 0;
 	for(long long i =0; i <= limit; i++)
 	{
 		sum += i;
 	}
 	//TODO what to do with the answer
+	// /sum is a global variable, so other threads can access
+	pthread_exit(0);
 }
 
 int main(int argc, char **argv)
@@ -36,4 +41,5 @@ int main(int argc, char **argv)
 
 	// wait until thread is done its work
 	pthread_join(tid, NULL);
+	printf("sum is %lld\n", sum);
 }

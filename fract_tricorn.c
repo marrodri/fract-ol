@@ -42,11 +42,11 @@ void		draw_tri(t_img *st_img)
 		{
 			// st_map->in_min = st_img->x_ax * (st_img->zoom);
 			// st_map->in_max = (WIN_SZ + st_img->x_ax) * st_img->zoom;
-			st_img->x0 = ft_map(st_img->x, st_img->x_ax * (st_img->zoom), (WIN_SZ + st_img->x_ax) * st_img->zoom, -2.5, 1);
+			st_img->x0 = ft_map(st_img->x, st_img->x_ax * (st_img->zoom), (WIN_SZ + st_img->x_ax) * st_img->zoom, -2.0, 1.5);
 			st_img->y0 = ft_map(st_img->y, st_img->y_ax * (st_img->zoom), (WIN_SZ + st_img->y_ax) * st_img->zoom, -1.5, 1.5);
 			cx = st_img->x0;
 			cy = st_img->y0;
-			st_img->color = color_iter_mand(st_img->color, st_img->x0, st_img->y0, cx, cy);
+			st_img->color = color_iter_tri(st_img->color, st_img->x0, st_img->y0, cx, cy);
 			mlx_pixel_image(st_img);
 			st_img->y++;
 		}
@@ -58,7 +58,7 @@ int			loop_tri(t_img *st_img)
 {
 	if (st_img->draw)
 	{
-		draw_mand(st_img);
+		draw_tri(st_img);
 		st_img->draw = 0;
 		mlx_put_image_to_window(st_img->p_mlx, st_img->p_win,
 			st_img->p_img, 0, 0);
@@ -77,7 +77,7 @@ void		tricorn_set(t_img *st_img, t_map *st_map)
 	st_img->draw = 1;
 	// st_map->in_min = st_img->x_ax * (st_img->zoom);
 	// st_map->in_max = (WIN_SZ + st_img->x_ax) * st_img->zoom;
-	draw_mand(st_img);
+	draw_tri(st_img);
 	mlx_hook(st_img->p_win, 2, 2, ft_fract_drag, (void*)st_img);
 	mlx_hook(st_img->p_win, 4, (1L << 4), ft_fract_zoom, (void*)st_img);
 	mlx_loop_hook(st_img->p_mlx, loop_tri, st_img);
