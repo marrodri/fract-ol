@@ -32,7 +32,7 @@ double	ft_map(double value, double in_min, double in_max, double out_min, double
 	return ((value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
 }
 
-int		ft_fract_zoom(int i, int x, int y, void *param)
+int		ft_fract_zoom(int i, void *param)
 {
 	t_img		*st_img;
 

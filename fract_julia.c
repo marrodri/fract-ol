@@ -69,20 +69,22 @@ int	loop_jul(t_img *st_img, int x, int y, void *param)
 
 void    julia_set(t_img *st_img)
 {
-        st_img->x = 0.0;
-        st_img->y = 0.0;
-        st_img->x0 = 0.0;
-        st_img->y0 = 0.0;
-		st_img->x_ax = 0;
-		st_img->y_ax = 0;
-		st_img->mouse_x = 0;
-		st_img->mouse_y = 0;
-        st_img->color = 0x80ff00;
-    	st_img->p_win = mlx_new_window(st_img->p_mlx, WIN_SZ, WIN_SZ, "mand");
-		st_img->draw = 1;
-		draw_julia(1000, 1000, st_img);
-		mlx_hook(st_img->p_win, 2, 2, ft_fract_drag, (void*)st_img);
-		mlx_hook(st_img->p_win, 4, (1L << 4), ft_fract_zoom, (void*)st_img);
-		mlx_hook(st_img->p_win, 6, (1L << 6), ft_fract_cursor, (void*)st_img);
-		mlx_loop_hook(st_img->p_mlx, loop_jul, (void*)st_img);
+	// pthread_t jul_id;
+
+	st_img->x = 0.0;
+	st_img->y = 0.0;
+	st_img->x0 = 0.0;
+	st_img->y0 = 0.0;
+	st_img->x_ax = 0;
+	st_img->y_ax = 0;
+	st_img->mouse_x = 0;
+	st_img->mouse_y = 0;
+	st_img->color = 0x80ff00;
+	st_img->p_win = mlx_new_window(st_img->p_mlx, WIN_SZ, WIN_SZ, "mand");
+	st_img->draw = 1;
+	draw_julia(1000, 1000, st_img);
+	mlx_hook(st_img->p_win, 2, 2, ft_fract_drag, (void*)st_img);
+	mlx_hook(st_img->p_win, 4, (1L << 4), ft_fract_zoom, (void*)st_img);
+	mlx_hook(st_img->p_win, 6, (1L << 6), ft_fract_cursor, (void*)st_img);
+	mlx_loop_hook(st_img->p_mlx, loop_jul, (void*)st_img);
 }
