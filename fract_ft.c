@@ -37,8 +37,8 @@ int		ft_fract_zoom(int i, int x, int y, void *param)
 	t_img		*st_img;
 	x = 0;
 	y = 0;
-
 	st_img = (param);
+	printf("mouse_x|%f| mouse_y|%f|\n", st_img->mouse_x, st_img->mouse_y);
 	if (i == 5)
 	{
 		st_img->zoom *= 1.1;
@@ -57,6 +57,8 @@ int		ft_fract_drag(int i, void *param)
 	t_img	*st_img;
 
 	st_img = (param);
+
+	// printf("mouse_x|%f| mouse_y|%f|\n", st_img->mouse_x, st_img->mouse_y);
 	printf("zoom is |%f|\n", st_img->zoom);
 
 	if (i == K_DRAG_LF)

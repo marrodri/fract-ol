@@ -45,8 +45,8 @@ void	draw_julia(double width, double height, t_img *st_img)
 		st_img->y = 0;
 		while(st_img->y < height)
 		{
-			st_img->x0 = ft_map(st_img->x, (st_img->x_ax) * st_img->zoom, (width + st_img->x_ax) * st_img->zoom, -2, 2);
-            st_img->y0 = ft_map(st_img->y, (st_img->y_ax) * st_img->zoom, (height + st_img->y_ax) * st_img->zoom, -1.5, 1.5);
+			st_img->x0 = ft_map(st_img->x, (st_img->x_ax) * (st_img->zoom ), (width + st_img->x_ax) * (st_img->zoom), -2, 2);
+            st_img->y0 = ft_map(st_img->y, (st_img->y_ax) * (st_img->zoom), (height + st_img->y_ax) * (st_img->zoom), -1.5, 1.5);
             st_img->color = color_iter_jul(st_img->color, st_img->x0, st_img->y0, st_img);
             mlx_pixel_image(st_img);
 			st_img->y++;
