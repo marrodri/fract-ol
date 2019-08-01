@@ -57,21 +57,23 @@ int		ft_fract_drag(int i, void *param)
 	t_img	*st_img;
 
 	st_img = (param);
+	printf("zoom is |%f|\n", st_img->zoom);
+
 	if (i == K_DRAG_LF)
 	{
-		st_img->x_ax -= 5 * st_img->zoom;
+		st_img->x_ax -= 5;
 	}
 	else if (i == K_DRAG_RT)
 	{
-		st_img->x_ax += 5 * st_img->zoom;
+		st_img->x_ax += 5;
 	}
 	else if (i == K_DRAG_UP)
 	{
-		st_img->y_ax -= 15 * st_img->zoom;
+		st_img->y_ax -= 5;
 	}
 	else if (i == K_DRAG_DW)
 	{
-		st_img->y_ax += 15 * st_img->zoom;
+		st_img->y_ax += 5;
 	}
 	st_img->draw = 1;
 	return (1);
