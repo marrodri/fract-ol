@@ -68,12 +68,13 @@ int			loop_tri(t_img *st_img)
 
 void		tricorn_set(t_img *st_img, t_map *st_map)
 {
+	st_map = NULL;
 	st_img->x0 = 0.0;
 	st_img->y0 = 0.0;
 	st_img->x_ax = 0;
 	st_img->y_ax = 0;
 	st_img->color = 0x80ff00;
-	st_img->p_win = mlx_new_window(st_img->p_mlx, WIN_SZ, WIN_SZ, "mand");
+	st_img->p_win = mlx_new_window(st_img->p_mlx, WIN_SZ, WIN_SZ, "tricorn");
 	st_img->draw = 1;
 	// st_map->in_min = st_img->x_ax * (st_img->zoom);
 	// st_map->in_max = (WIN_SZ + st_img->x_ax) * st_img->zoom;

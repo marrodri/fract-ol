@@ -79,6 +79,7 @@ int			loop_mand(t_img *st_img)
 
 void		mandelbrot_set(t_img *st_img, t_map *st_map)
 {
+	st_map = NULL;
 	st_img->x0 = 0.0;
 	st_img->y0 = 0.0;
 	st_img->x_ax = 0;

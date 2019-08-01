@@ -29,7 +29,7 @@ double	color_iter_jul(double color, double x0, double y0, t_img *st_img)
 		i++;
 	}
 	color = ft_map(i, 0, max_i, 0, 1);
-	color = ft_map(sqrt(color),0,1,0,0x80ff00);
+	color = ft_map(sqrt(color),0,1,0,0xFFFFFF);
 	if (i == max_i)
 	{
 		color = 0;
@@ -55,8 +55,11 @@ void	draw_julia(double width, double height, t_img *st_img)
 	}
 }
 
-int	loop_jul(t_img *st_img, int x, int y, void *param)
+int	loop_jul(void *param)
 {
+	t_img *st_img;
+
+	st_img = param;
 	if (st_img->draw)
 	{
 		draw_julia(1000, 1000, st_img);
@@ -79,8 +82,8 @@ void    julia_set(t_img *st_img)
 	st_img->y_ax = 0;
 	st_img->mouse_x = 0;
 	st_img->mouse_y = 0;
-	st_img->color = 0x80ff00;
-	st_img->p_win = mlx_new_window(st_img->p_mlx, WIN_SZ, WIN_SZ, "mand");
+	st_img->color = 0xFFFFFF;
+	st_img->p_win = mlx_new_window(st_img->p_mlx, WIN_SZ, WIN_SZ, "julia");
 	st_img->draw = 1;
 	draw_julia(1000, 1000, st_img);
 	mlx_hook(st_img->p_win, 2, 2, ft_fract_drag, (void*)st_img);
