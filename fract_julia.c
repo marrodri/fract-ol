@@ -41,22 +41,25 @@ double	color_iter_jul(double color, double x0, double y0, t_img *st_img)
 
 void	*draw_julia(void *varg)
 {
-
+	int x;
 	t_thrd_arg *st_thrd_arg;
+	t_img		*st_img;
 
 	st_thrd_arg = varg;
-	while(st_img->x < WIN_SZ)
+	x= st_thrd_arg->x;
+	st_img = st_thrd_arg->st_img;
+	while(x < WIN_SZ)
 	{
 		st_img->y = 0;
 		while(st_img->y < WIN_SZ)
 		{
-			st_img->x0 = ft_map(st_img->x, (st_img->x_ax) * (st_img->zoom), (WIN_SZ + st_img->x_ax) * (st_img->zoom), -2, 2);
+			st_img->x0 = ft_map(x, (st_img->x_ax) * (st_img->zoom), (WIN_SZ + st_img->x_ax) * (st_img->zoom), -2, 2);
             st_img->y0 = ft_map(st_img->y, (st_img->y_ax) * (st_img->zoom), (WIN_SZ + st_img->y_ax) * (st_img->zoom), -1.5, 1.5);
             st_img->color = color_iter_jul(st_img->color, st_img->x0, st_img->y0, st_img);
-            mlx_pixel_image(st_img);
+            mlx_pixel_image(x, st_img);
 			st_img->y++;
 		}
-		st_img->x += 8;
+		x += 8;
 
 	}
 	return NULL;
@@ -78,30 +81,6 @@ void multithrd_fract( t_img *st_img)
 		pthread_join(tid[i],NULL);
 		i++;
 	}
-	// st_img->x =0;
-	// pthread_create(&st_thrd->tid0, NULL, draw_julia, st_img);
-	// pthread_join(st_thrd->tid0, NULL);
-	// st_img->x =1;
-	// pthread_create(&st_thrd->tid1, NULL, draw_julia, st_img);
-	// pthread_join(st_thrd->tid1, NULL);
-	// st_img->x =2;
-	// pthread_create(&st_thrd->tid2, NULL, draw_julia, st_img);
-	// pthread_join(st_thrd->tid2, NULL);
-	// st_img->x =3;
-	// pthread_create(&st_thrd->tid3, NULL, draw_julia, st_img);
-	// pthread_join(st_thrd->tid3, NULL);
-	// st_img->x =4;
-	// pthread_create(&st_thrd->tid4, NULL, draw_julia, st_img);
-	// pthread_join(st_thrd->tid4, NULL);
-	// st_img->x =5;
-	// pthread_create(&st_thrd->tid5, NULL, draw_julia, st_img);
-	// pthread_join(st_thrd->tid5, NULL);
-	// st_img->x =6;
-	// pthread_create(&st_thrd->tid6, NULL, draw_julia, st_img);
-	// pthread_join(st_thrd->tid6, NULL);
-	// st_img->x =7;
-	// pthread_create(&st_thrd->tid7, NULL, draw_julia, st_img);
-	// pthread_join(st_thrd->tid7, NULL);
 
 	// free(st_thrd);
 	return ;
@@ -124,10 +103,6 @@ int	loop_jul(void *param)
 
 void    julia_set(t_img *st_img)
 {
-	// pthread_t jul_id;
-	// t_thrd *st_thrd;
-	// st_thrd = malloc(sizeof(t_thrd));
-
 	st_img->x = 0.0;
 	st_img->y = 0.0;
 	st_img->x0 = 0.0;
@@ -140,8 +115,7 @@ void    julia_set(t_img *st_img)
 	st_img->p_win = mlx_new_window(st_img->p_mlx, WIN_SZ, WIN_SZ, "julia");
 	st_img->draw = 1;
 	
-	multithrd_fract( st_img);
-	// draw_julia(1000, 1000, st_img);
+	multithrd_fract(st_img);
 
 	mlx_hook(st_img->p_win, 2, 2, ft_fract_drag, (void*)st_img);
 	mlx_hook(st_img->p_win, 4, (1L << 4), ft_fract_zoom, (void*)st_img);

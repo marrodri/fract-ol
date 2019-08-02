@@ -12,13 +12,11 @@
 
 #include "fract.h"
 
-int		mlx_pixel_image(t_img *st_img)
+int		mlx_pixel_image(int x, t_img *st_img)
 {
-	int x;
-	int y;
-	int color;
+	int		y;
+	int		color;
 
-	x = st_img->x;
 	y = st_img->y;
 	color = st_img->color; //at this point delete all upper attributes
 	if (x < 0 || y < 0 || x >= WIN_SZ || y >= WIN_SZ)
@@ -35,6 +33,7 @@ double	ft_map(double value, double in_min, double in_max, double out_min, double
 int		ft_fract_zoom(int i, int x, int y, void *param)
 {
 	t_img		*st_img;
+	
 	x = 0;
 	y = 0;
 	st_img = (param);

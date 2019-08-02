@@ -1,5 +1,7 @@
 {
 	"files.associations": {
-		"fract.h": "c"
+		"fract.h": "c",
+		"pthread.h": "c",
+		"stdio.h": "c"
 	}
 }
