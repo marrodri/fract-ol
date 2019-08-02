@@ -17,7 +17,7 @@
 # define K_DRAG_DW	125
 # define K_DRAG_LF	123
 # define K_DRAG_RT	124
-#define NUM_THREAD	8
+#define THREADS		8
 # include <pthread.h>
 # include <math.h>
 # include "libft/libft.h"
@@ -54,17 +54,23 @@ typedef struct	s_map_x
 	double		in_max;
 }				t_map;
 
-typedef struct	s_thrd
+typedef struct	s_thrd_arg
 {
-	pthread_t	tid0;
-	pthread_t	tid1;
-	pthread_t	tid2;
-	pthread_t	tid3;
-	pthread_t	tid4;
-	pthread_t	tid5;
-	pthread_t	tid6;
-	pthread_t	tid7;
-}				t_thrd;
+	t_img		*st_img;
+	int			x;
+}				t_thrd_arg;
+
+// typedef struct	s_thrd
+// {
+// 	pthread_t	tid0;
+// 	pthread_t	tid1;
+// 	pthread_t	tid2;
+// 	pthread_t	tid3;
+// 	pthread_t	tid4;
+// 	pthread_t	tid5;
+// 	pthread_t	tid6;
+// 	pthread_t	tid7;
+// }				t_thrd;
 
 void			fract_init(t_img *st_img, t_map *st_map, char *fract);
 int				mlx_pixel_image(t_img *st_img);

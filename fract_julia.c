@@ -41,8 +41,10 @@ double	color_iter_jul(double color, double x0, double y0, t_img *st_img)
 
 void	*draw_julia(void *varg)
 {
-	t_img *st_img;
-	st_img = varg;
+
+	t_thrd_arg *st_thrd_arg;
+
+	st_thrd_arg = varg;
 	while(st_img->x < WIN_SZ)
 	{
 		st_img->y = 0;
@@ -62,35 +64,46 @@ void	*draw_julia(void *varg)
 
 void multithrd_fract( t_img *st_img)
 {
-	t_thrd *st_thrd;
-	st_thrd = malloc(sizeof(t_thrd));
+	pthread_t	tid[8];
+	t_thrd_arg	*st_thrd_arg;
+	int			i;
 
-	st_img->x =0;
-	pthread_create(&st_thrd->tid0, NULL, draw_julia, st_img);
-	pthread_join(st_thrd->tid0, NULL);
-	st_img->x =1;
-	pthread_create(&st_thrd->tid1, NULL, draw_julia, st_img);
-	pthread_join(st_thrd->tid1, NULL);
-	st_img->x =2;
-	pthread_create(&st_thrd->tid2, NULL, draw_julia, st_img);
-	pthread_join(st_thrd->tid2, NULL);
-	st_img->x =3;
-	pthread_create(&st_thrd->tid3, NULL, draw_julia, st_img);
-	pthread_join(st_thrd->tid3, NULL);
-	st_img->x =4;
-	pthread_create(&st_thrd->tid4, NULL, draw_julia, st_img);
-	pthread_join(st_thrd->tid4, NULL);
-	st_img->x =5;
-	pthread_create(&st_thrd->tid5, NULL, draw_julia, st_img);
-	pthread_join(st_thrd->tid5, NULL);
-	st_img->x =6;
-	pthread_create(&st_thrd->tid6, NULL, draw_julia, st_img);
-	pthread_join(st_thrd->tid6, NULL);
-	st_img->x =7;
-	pthread_create(&st_thrd->tid7, NULL, draw_julia, st_img);
-	pthread_join(st_thrd->tid7, NULL);
+	i =0;
+	st_thrd_arg = malloc(sizeof(t_thrd_arg));
+	st_thrd_arg->st_img = st_img;
+	while(i < THREADS)
+	{
+		st_thrd_arg->x = i;
+		pthread_create(&tid[i], NULL, draw_julia, st_thrd_arg);
+		pthread_join(tid[i],NULL);
+		i++;
+	}
+	// st_img->x =0;
+	// pthread_create(&st_thrd->tid0, NULL, draw_julia, st_img);
+	// pthread_join(st_thrd->tid0, NULL);
+	// st_img->x =1;
+	// pthread_create(&st_thrd->tid1, NULL, draw_julia, st_img);
+	// pthread_join(st_thrd->tid1, NULL);
+	// st_img->x =2;
+	// pthread_create(&st_thrd->tid2, NULL, draw_julia, st_img);
+	// pthread_join(st_thrd->tid2, NULL);
+	// st_img->x =3;
+	// pthread_create(&st_thrd->tid3, NULL, draw_julia, st_img);
+	// pthread_join(st_thrd->tid3, NULL);
+	// st_img->x =4;
+	// pthread_create(&st_thrd->tid4, NULL, draw_julia, st_img);
+	// pthread_join(st_thrd->tid4, NULL);
+	// st_img->x =5;
+	// pthread_create(&st_thrd->tid5, NULL, draw_julia, st_img);
+	// pthread_join(st_thrd->tid5, NULL);
+	// st_img->x =6;
+	// pthread_create(&st_thrd->tid6, NULL, draw_julia, st_img);
+	// pthread_join(st_thrd->tid6, NULL);
+	// st_img->x =7;
+	// pthread_create(&st_thrd->tid7, NULL, draw_julia, st_img);
+	// pthread_join(st_thrd->tid7, NULL);
 
-	free(st_thrd);
+	// free(st_thrd);
 	return ;
 }
 
