@@ -58,6 +58,7 @@ typedef struct	s_thrd_arg
 {
 	t_img		*st_img;
 	int			x;
+	int			y;
 }				t_thrd_arg;
 
 void			fract_init(t_img *st_img, t_map *st_map, char *fract);

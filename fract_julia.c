@@ -80,8 +80,6 @@ void multithrd_fract(t_img *st_img)
 		pthread_join(tid[i],NULL);
 		i++;
 	}
-
-	// free(t_thrd_arg);
 	return ;
 }
 
