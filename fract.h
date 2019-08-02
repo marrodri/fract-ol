@@ -60,18 +60,6 @@ typedef struct	s_thrd_arg
 	int			x;
 }				t_thrd_arg;
 
-// typedef struct	s_thrd
-// {
-// 	pthread_t	tid0;
-// 	pthread_t	tid1;
-// 	pthread_t	tid2;
-// 	pthread_t	tid3;
-// 	pthread_t	tid4;
-// 	pthread_t	tid5;
-// 	pthread_t	tid6;
-// 	pthread_t	tid7;
-// }				t_thrd;
-
 void			fract_init(t_img *st_img, t_map *st_map, char *fract);
 int		mlx_pixel_image(int x, t_img *st_img);
 double			ft_map(double value, double in_min, double val_max, double out_min, double out_max);
@@ -81,4 +69,6 @@ int				ft_fract_cursor(int x, int y, void *param);
 void			mandelbrot_set(t_img *st_img, t_map *st_map);
 void			julia_set(t_img *st_img);
 void			tricorn_set(t_img *st_img, t_map *st_map);
+void	*draw_julia(void *varg);
+void		*draw_mand(void *varg);
 #endif

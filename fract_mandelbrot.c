@@ -40,20 +40,25 @@ double		color_iter_mand(double color, double x0, double y0, double cx, double cy
 	return (color);
 }
 
-void		draw_mand(t_img *st_img)
+void		*draw_mand(void *varg)
 {
+	int x;
 	double cx;
 	double cy;
+	t_thrd_arg *st_thrd_arg;
+	t_img *st_img;
 
-	st_img->x = 0;
-	while (st_img->x < WIN_SZ)
+	st_thrd_arg = varg;
+	x = st_thrd_arg->x;
+	st_img = st_thrd_arg->st_img;
+	while (x < WIN_SZ)
 	{
 		st_img->y = 0;
 		while (st_img->y < WIN_SZ)
 		{
 			// st_map->in_min = st_img->x_ax * (st_img->zoom);
 			// st_map->in_max = (WIN_SZ + st_img->x_ax) * st_img->zoom;
-			st_img->x0 = ft_map(st_img->x, (st_img->x_ax) * (st_img->zoom), (WIN_SZ + st_img->x_ax) * st_img->zoom, -2.5, 1);
+			st_img->x0 = ft_map(x, (st_img->x_ax) * (st_img->zoom), (WIN_SZ + st_img->x_ax) * st_img->zoom, -2.5, 1);
 			st_img->y0 = ft_map(st_img->y, (st_img->y_ax) * (st_img->zoom), (WIN_SZ + st_img->y_ax) * st_img->zoom, -1.5, 1.5);
 			cx = st_img->x0;
 			cy = st_img->y0;
@@ -61,8 +66,30 @@ void		draw_mand(t_img *st_img)
 			// mlx_pixel_image(st_img);
 			st_img->y++;
 		}
-		st_img->x++;
+		x += THREADS;
 	}
+	return NULL;
+}
+
+void multithrd_fract(t_img *st_img)
+{
+	pthread_t	tid[THREADS];
+	t_thrd_arg	st_thrd_arg[1];
+	int			i;
+
+	i = 0;
+	void *test = draw_mand;
+	st_thrd_arg[0].st_img = st_img;
+	while(i < THREADS)
+	{
+		st_thrd_arg[0].x = i;
+		pthread_create(&tid[i], NULL, test, st_thrd_arg);
+		pthread_join(tid[i],NULL);
+		i++;
+	}
+
+	// free(t_thrd_arg);
+	return ;
 }
 
 int			loop_mand(t_img *st_img)
@@ -89,7 +116,10 @@ void		mandelbrot_set(t_img *st_img, t_map *st_map)
 	st_img->draw = 1;
 	// st_map->in_min = st_img->x_ax * (st_img->zoom);
 	// st_map->in_max = (WIN_SZ + st_img->x_ax) * st_img->zoom;
-	draw_mand(st_img);
+	
+	
+	// draw_mand(st_img);
+	multithrd_fract(st_img);
 	mlx_hook(st_img->p_win, 2, 2, ft_fract_drag, (void*)st_img);
 	mlx_hook(st_img->p_win, 4, (1L << 4), ft_fract_zoom, (void*)st_img);
 	mlx_loop_hook(st_img->p_mlx, loop_mand, st_img);

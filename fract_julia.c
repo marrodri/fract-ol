@@ -59,30 +59,29 @@ void	*draw_julia(void *varg)
             mlx_pixel_image(x, st_img);
 			st_img->y++;
 		}
-		x += 8;
-
+		x += THREADS;
 	}
 	return NULL;
 }
 
-void multithrd_fract( t_img *st_img)
+void multithrd_fract(t_img *st_img)
 {
-	pthread_t	tid[8];
-	t_thrd_arg	*st_thrd_arg;
+	pthread_t	tid[THREADS];
+	t_thrd_arg	st_thrd_arg[1];
 	int			i;
 
-	i =0;
-	st_thrd_arg = malloc(sizeof(t_thrd_arg));
-	st_thrd_arg->st_img = st_img;
+	i = 0;
+	void *test = draw_julia;
+	st_thrd_arg[0].st_img = st_img;
 	while(i < THREADS)
 	{
-		st_thrd_arg->x = i;
-		pthread_create(&tid[i], NULL, draw_julia, st_thrd_arg);
+		st_thrd_arg[0].x = i;
+		pthread_create(&tid[i], NULL, test, st_thrd_arg);
 		pthread_join(tid[i],NULL);
 		i++;
 	}
 
-	// free(st_thrd);
+	// free(t_thrd_arg);
 	return ;
 }
 
