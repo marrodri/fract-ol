@@ -25,8 +25,8 @@
 
 typedef	struct	s_img
 {
-	int		x;
-	int		y;
+	int			x;
+	int			y;
 	void		*p_mlx;
 	void		*p_win;
 	void		*p_img;
@@ -39,17 +39,31 @@ typedef	struct	s_img
 	double		y_ax;
 	double		x0;
 	double		y0;
-	int		color;
+	int			color;
 	double		mouse_x;
 	double		mouse_y;
 	int			draw;
 }				t_img;
 
-typedef struct	s_map
+typedef struct	s_map_x
 {
 	double		out_min;
 	double		out_max;
+	double		in_min;
+	double		in_max;
 }				t_map;
+
+typedef struct	s_thrd
+{
+	pthread_t	tid0;
+	pthread_t	tid1;
+	pthread_t	tid2;
+	pthread_t	tid3;
+	pthread_t	tid4;
+	pthread_t	tid5;
+	pthread_t	tid6;
+	pthread_t	tid7;
+}				t_thrd;
 
 void			fract_init(t_img *st_img, t_map *st_map, char *fract);
 int				mlx_pixel_image(t_img *st_img);
