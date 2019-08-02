@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_H
-# define FRACT_H
+#ifndef test_H
+# define test_H
 # define WIN_SZ		1000
 # define K_DRAG_UP	126
 # define K_DRAG_DW	125
@@ -46,28 +46,27 @@ typedef	struct	s_img
 	int			draw;
 }				t_img;
 
-typedef struct	s_map_x
+typedef struct	s_thread_arg
 {
-	double		out_min;
-	double		out_max;
-	double		in_min;
-	double		in_max;
-}				t_map;
+	t_img	*st_img;
+	int		x;
+}				t_thread_arg;
+
+// typedef struct	s_map_x
+// {
+// 	double		out_min;
+// 	double		out_max;
+// 	double		in_min;
+// 	double		in_max;
+// }				t_map;
 
 typedef struct	s_thrd
 {
-	pthread_t	tid0;
-	pthread_t	tid1;
-	pthread_t	tid2;
-	pthread_t	tid3;
-	pthread_t	tid4;
-	pthread_t	tid5;
-	pthread_t	tid6;
-	pthread_t	tid7;
+	pthread_t	tid;
 }				t_thrd;
 
 void			fract_init(t_img *st_img, t_map *st_map, char *fract);
-int				mlx_pixel_image(t_img *st_img);
+int				mlx_pixel_image(int x, int y, int color, t_img *st_img);
 double			ft_map(double value, double in_min, double val_max, double out_min, double out_max);
 int				ft_fract_zoom(int i, int x, int y, void *param);
 int				ft_fract_drag(int i, void *param);

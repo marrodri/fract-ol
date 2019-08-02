@@ -14,7 +14,7 @@
 # basic makefile, fully complete later in the future
 NAME = fractol
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 I_FT = -I libft/
 INC = -I ./includes/minilibx_macos
 MLX = -L ./includes/minilibx_macos -lmlx -framework OpenGl -framework AppKit

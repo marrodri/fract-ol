@@ -47,7 +47,7 @@ void		draw_tri(t_img *st_img)
 			cx = st_img->x0;
 			cy = st_img->y0;
 			st_img->color = color_iter_tri(st_img->color, st_img->x0, st_img->y0, cx, cy);
-			mlx_pixel_image(st_img);
+			// mlx_pixel_image(st_img);
 			st_img->y++;
 		}
 		st_img->x++;
