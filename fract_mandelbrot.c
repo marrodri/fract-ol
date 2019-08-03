@@ -67,7 +67,7 @@ void		*draw_mand(void *varg)
 	return (NULL);
 }
 
-void		thread_fract_mand(t_img *st_img)
+void		thread_mand(t_img *st_img)
 {
 	pthread_t	tid[THREADS];
 	t_thrd_arg	st_thrd_arg[1];
@@ -89,7 +89,7 @@ int			loop_mand(t_img *st_img)
 {
 	if (st_img->draw)
 	{
-		thread_fract_mand(st_img);
+		thread_mand(st_img);
 		st_img->draw = 0;
 		mlx_put_image_to_window(st_img->p_mlx, st_img->p_win,
 			st_img->p_img, 0, 0);
@@ -106,7 +106,7 @@ void		mandelbrot_set(t_img *st_img)
 	st_img->color = 0x80ff00;
 	st_img->p_win = mlx_new_window(st_img->p_mlx, WIN_SZ, WIN_SZ, "mand");
 	st_img->draw = 1;
-	thread_fract_mand(st_img);
+	thread_mand(st_img);
 	mlx_hook(st_img->p_win, 2, 2, ft_fract_drag, (void*)st_img);
 	mlx_hook(st_img->p_win, 4, (1L << 4), ft_fract_zoom, (void*)st_img);
 	mlx_loop_hook(st_img->p_mlx, loop_mand, st_img);
