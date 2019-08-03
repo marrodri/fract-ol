@@ -40,6 +40,15 @@ double		color_iter_mand(double color, t_img *st_img)
 	return (color);
 }
 
+t_map set_xmap(t_map *st_map, t_img *st_img)
+{
+
+}
+t_map set_ymap(t_map *st_map, t_img *st_img)
+{
+
+}
+
 void		*draw_mand(void *varg)
 {
 	int			x;
@@ -54,10 +63,8 @@ void		*draw_mand(void *varg)
 		st_img->y = 0;
 		while (st_img->y < WIN_SZ)
 		{
-			st_img->x0 = ft_map(x, (st_img->x_ax) * (st_img->zoom),
-					(WIN_SZ + st_img->x_ax) * st_img->zoom, -2.5, 1);
-			st_img->y0 = ft_map(st_img->y, (st_img->y_ax) * (st_img->zoom),
-					(WIN_SZ + st_img->y_ax) * st_img->zoom, -1.5, 1.5);
+			st_img->x0 = ft_map(x, (st_img->x_ax) * (st_img->zoom), (WIN_SZ + st_img->x_ax) * st_img->zoom, -2.5, 1);
+			st_img->y0 = ft_map(st_img->y, (st_img->y_ax) * (st_img->zoom), (WIN_SZ + st_img->y_ax) * st_img->zoom, -1.5, 1.5);
 			st_img->color = color_iter_mand(st_img->color, st_img);
 			mlx_pixel_image(x, st_img);
 			st_img->y++;

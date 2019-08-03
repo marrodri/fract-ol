@@ -18,8 +18,7 @@ int		mlx_pixel_image(int x, t_img *st_img)
 	int		color;
 
 	y = st_img->y;
-	color = st_img->color; //at this point delete all upper attributes
-	// printf("color value|%d|\n", color);
+	color = st_img->color;
 	if (x < 0 || y < 0 || x >= WIN_SZ || y >= WIN_SZ)
 		return (0);
 	*((int *)(st_img->addr + (x + y * WIN_SZ) * st_img->bpp)) = color;
@@ -35,9 +34,9 @@ int		ft_fract_zoom(int i, int x, int y, void *param)
 {
 	t_img		*st_img;
 
-	x = 0;
-	y = 0;
 	st_img = (param);
+	st_img->mouse_x = x;
+	st_img->mouse_y = y;
 	printf("mouse_x|%f| mouse_y|%f|\n", st_img->mouse_x, st_img->mouse_y);
 	if (i == 5)
 	{
@@ -58,7 +57,6 @@ int		ft_fract_drag(int i, void *param)
 
 	st_img = (param);
 
-	// printf("mouse_x|%f| mouse_y|%f|\n", st_img->mouse_x, st_img->mouse_y);
 	printf("zoom is |%f|\n", st_img->zoom);
 
 	if (i == K_DRAG_LF)

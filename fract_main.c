@@ -14,7 +14,8 @@
 
 int	fract_checker(char *input)
 {
-	if (!ft_strcmp(input, "mandelbrot") || !ft_strcmp(input, "julia")|| !ft_strcmp(input, "tricorn"))
+	if (!ft_strcmp(input, "mandelbrot") || !ft_strcmp(input, "julia")
+			|| !ft_strcmp(input, "tricorn"))
 	{
 		return (1);
 	}

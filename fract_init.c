@@ -43,7 +43,7 @@ void	fract_init(t_img *st_img, t_map *st_map, char *fract)
 	{
 		julia_set(st_img);
 	}
-	else if(!ft_strcmp(fract, "tricorn"))
+	else if (!ft_strcmp(fract, "tricorn"))
 	{
 		tricorn_set(st_img, st_map);
 	}
