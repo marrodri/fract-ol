@@ -98,8 +98,6 @@ int		loop_jul(void *param)
 
 void	julia_set(t_img *st_img)
 {
-	st_img->x = 0.0;
-	st_img->y = 0.0;
 	st_img->x0 = 0.0;
 	st_img->y0 = 0.0;
 	st_img->x_ax = 0;

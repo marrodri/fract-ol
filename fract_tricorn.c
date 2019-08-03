@@ -40,7 +40,7 @@ void		*draw_tri(void *varg)
 
 	st_thrd_arg = varg;
 	st_img = st_thrd_arg->st_img;
-	x = st_img->x;
+	x = st_thrd_arg->x;
 	while (x < WIN_SZ)
 	{
 		st_img->y = 0;
@@ -54,24 +54,23 @@ void		*draw_tri(void *varg)
 			mlx_pixel_image(x, st_img);
 			st_img->y++;
 		}
-		st_img->x++;
+		x += THREADS;
 	}
 	return NULL;
 }
 
-void thread_fract_tri(t_img *st_img)
+void thread_tri(t_img *st_img)
 {
 	pthread_t	tid[THREADS];
 	t_thrd_arg	st_thrd_arg[1];
 	int			i;
 
 	i = 0;
-	void *test = draw_tri;
 	st_thrd_arg[0].st_img = st_img;
 	while(i < THREADS)
 	{
 		st_thrd_arg[0].x = i;
-		pthread_create(&tid[i], NULL, test, st_thrd_arg);
+		pthread_create(&tid[i], NULL, draw_tri, st_thrd_arg);
 		pthread_join(tid[i],NULL);
 		i++;
 	}
@@ -82,7 +81,7 @@ int			loop_tri(t_img *st_img)
 {
 	if (st_img->draw)
 	{
-		draw_tri(st_img);
+		thread_tri(st_img);
 		st_img->draw = 0;
 		mlx_put_image_to_window(st_img->p_mlx, st_img->p_win,
 			st_img->p_img, 0, 0);
@@ -102,7 +101,7 @@ void		tricorn_set(t_img *st_img, t_map *st_map)
 	st_img->draw = 1;
 	// st_map->in_min = st_img->x_ax * (st_img->zoom);
 	// st_map->in_max = (WIN_SZ + st_img->x_ax) * st_img->zoom;
-	draw_tri(st_img);
+	thread_tri(st_img);
 	mlx_hook(st_img->p_win, 2, 2, ft_fract_drag, (void*)st_img);
 	mlx_hook(st_img->p_win, 4, (1L << 4), ft_fract_zoom, (void*)st_img);
 	mlx_loop_hook(st_img->p_mlx, loop_tri, st_img);
