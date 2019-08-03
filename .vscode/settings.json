@@ -1,7 +1,0 @@
-{
-	"files.associations": {
-		"fract.h": "c",
-		"pthread.h": "c",
-		"stdio.h": "c"
-	}
-}

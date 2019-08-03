@@ -1,42 +1,50 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fract_tricorn.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marrodri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/03 14:53:03 by marrodri          #+#    #+#             */
+/*   Updated: 2019/08/03 14:53:05 by marrodri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fract.h"
 
-double		color_iter_tri(double color, double x0, double y0, double cx, double cy)
+double		color_iter_tri(double color, t_img *st_img)
 {
 	double	x_sq;
 	double	y_sq;
+	double	cx;
+	double	cy;
 	int		i;
-	int		max_i;
 
 	i = 0;
-	max_i = 1000;
-	while (i < max_i)
+	cx = st_img->x0;
+	cy = st_img->y0;
+	while (i < MAX_I)
 	{
-		x_sq = (x0 * x0) - (y0 * y0);
-		y_sq = -2 * x0 * y0;
-		x0 = x_sq + cx;
-		y0 = y_sq + cy;
-		if ((x0 * x0) + (y0 * y0) > 16)
+		x_sq = (st_img->x0 * st_img->x0) - (st_img->y0 * st_img->y0);
+		y_sq = -2 * st_img->x0 * st_img->y0;
+		st_img->x0 = x_sq + cx;
+		st_img->y0 = y_sq + cy;
+		if ((st_img->x0 * st_img->x0) + (st_img->y0 * st_img->y0) > 16)
 			break ;
 		i++;
 	}
-	color = ft_map(i, 0, max_i, 0, 1);
+	color = ft_map(i, 0, MAX_I, 0, 1);
 	color = ft_map(sqrt(color), 0, 1, 0, 0x80ff00);
-	if (i == max_i)
-	{
-		color = 23;
-	}
+	if (i == MAX_I)
+		color = 0;
 	return (color);
 }
 
 void		*draw_tri(void *varg)
 {
-	double		cx;
-	double		cy;
 	int			x;
 	t_thrd_arg	*st_thrd_arg;
 	t_img		*st_img;
-	
 
 	st_thrd_arg = varg;
 	st_img = st_thrd_arg->st_img;
@@ -46,20 +54,20 @@ void		*draw_tri(void *varg)
 		st_img->y = 0;
 		while (st_img->y < WIN_SZ)
 		{
-			st_img->x0 = ft_map(x, st_img->x_ax * (st_img->zoom), (WIN_SZ + st_img->x_ax) * st_img->zoom, -2.0, 1.5);
-			st_img->y0 = ft_map(st_img->y, st_img->y_ax * (st_img->zoom), (WIN_SZ + st_img->y_ax) * st_img->zoom, -1.5, 1.5);
-			cx = st_img->x0;
-			cy = st_img->y0;
-			st_img->color = color_iter_tri(st_img->color, st_img->x0, st_img->y0, cx, cy);
+			st_img->x0 = ft_map(x, st_img->x_ax * (st_img->zoom),
+					(WIN_SZ + st_img->x_ax) * st_img->zoom, -2.0, 1.5);
+			st_img->y0 = ft_map(st_img->y, st_img->y_ax * (st_img->zoom),
+					(WIN_SZ + st_img->y_ax) * st_img->zoom, -1.5, 1.5);
+			st_img->color = color_iter_tri(st_img->color, st_img);
 			mlx_pixel_image(x, st_img);
 			st_img->y++;
 		}
 		x += THREADS;
 	}
-	return NULL;
+	return (NULL);
 }
 
-void thread_tri(t_img *st_img)
+void		thread_tri(t_img *st_img)
 {
 	pthread_t	tid[THREADS];
 	t_thrd_arg	st_thrd_arg[1];
@@ -67,11 +75,11 @@ void thread_tri(t_img *st_img)
 
 	i = 0;
 	st_thrd_arg[0].st_img = st_img;
-	while(i < THREADS)
+	while (i < THREADS)
 	{
 		st_thrd_arg[0].x = i;
 		pthread_create(&tid[i], NULL, draw_tri, st_thrd_arg);
-		pthread_join(tid[i],NULL);
+		pthread_join(tid[i], NULL);
 		i++;
 	}
 	return ;
@@ -99,8 +107,6 @@ void		tricorn_set(t_img *st_img, t_map *st_map)
 	st_img->color = 0x80ff00;
 	st_img->p_win = mlx_new_window(st_img->p_mlx, WIN_SZ, WIN_SZ, "tricorn");
 	st_img->draw = 1;
-	// st_map->in_min = st_img->x_ax * (st_img->zoom);
-	// st_map->in_max = (WIN_SZ + st_img->x_ax) * st_img->zoom;
 	thread_tri(st_img);
 	mlx_hook(st_img->p_win, 2, 2, ft_fract_drag, (void*)st_img);
 	mlx_hook(st_img->p_win, 4, (1L << 4), ft_fract_zoom, (void*)st_img);
