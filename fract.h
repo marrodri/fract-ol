@@ -13,6 +13,7 @@
 #ifndef FRACT_H
 # define FRACT_H
 # define WIN_SZ		1000
+# define MAX_I		256
 # define K_DRAG_UP	126
 # define K_DRAG_DW	125
 # define K_DRAG_LF	123
@@ -67,7 +68,7 @@ double			ft_map(double value, double in_min, double val_max, double out_min, dou
 int				ft_fract_zoom(int i, int x, int y, void *param);
 int				ft_fract_drag(int i, void *param);
 int				ft_fract_cursor(int x, int y, void *param);
-void			mandelbrot_set(t_img *st_img, t_map *st_map);
+void			mandelbrot_set(t_img *st_img);
 void			julia_set(t_img *st_img);
 void			tricorn_set(t_img *st_img, t_map *st_map);
 void	*draw_julia(void *varg);

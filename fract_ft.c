@@ -19,6 +19,7 @@ int		mlx_pixel_image(int x, t_img *st_img)
 
 	y = st_img->y;
 	color = st_img->color; //at this point delete all upper attributes
+	// printf("color value|%d|\n", color);
 	if (x < 0 || y < 0 || x >= WIN_SZ || y >= WIN_SZ)
 		return (0);
 	*((int *)(st_img->addr + (x + y * WIN_SZ) * st_img->bpp)) = color;

@@ -59,14 +59,14 @@ void		*draw_tri(void *varg)
 	return NULL;
 }
 
-void multithrd_fract_tri(t_img *st_img)
+void thread_fract_tri(t_img *st_img)
 {
 	pthread_t	tid[THREADS];
 	t_thrd_arg	st_thrd_arg[1];
 	int			i;
 
 	i = 0;
-	void *test = draw_mand;
+	void *test = draw_tri;
 	st_thrd_arg[0].st_img = st_img;
 	while(i < THREADS)
 	{

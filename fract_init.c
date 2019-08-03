@@ -37,7 +37,7 @@ void	fract_init(t_img *st_img, t_map *st_map, char *fract)
 	st_img->bpp /= 8;
 	if (!ft_strcmp(fract, "mandelbrot"))
 	{
-		mandelbrot_set(st_img, st_map);
+		mandelbrot_set(st_img);
 	}
 	else if (!ft_strcmp(fract, "julia"))
 	{
