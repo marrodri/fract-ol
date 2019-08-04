@@ -12,16 +12,13 @@
 
 #include "fract.h"
 
-int		mlx_pixel_image(int x, t_img *st_img)
+int		mlx_pixel_image(t_img *st_img)
 {
-	int		y;
-	int		color;
-
-	y = st_img->y;
-	color = st_img->color;
-	if (x < 0 || y < 0 || x >= WIN_SZ || y >= WIN_SZ)
+	if (st_img->x < 0 || st_img->y < 0 ||
+		st_img->x >= WIN_SZ || st_img->y >= WIN_SZ)
 		return (0);
-	*((int *)(st_img->addr + (x + y * WIN_SZ) * st_img->bpp)) = color;
+	*((int *)(st_img->addr + (st_img->x + st_img->y * WIN_SZ)
+		* st_img->bpp)) = st_img->color;
 	return (1);
 }
 
@@ -56,25 +53,15 @@ int		ft_fract_drag(int i, void *param)
 	t_img	*st_img;
 
 	st_img = (param);
-
 	printf("zoom is |%f|\n", st_img->zoom);
-
 	if (i == K_DRAG_LF)
-	{
 		st_img->x_ax -= 5;
-	}
 	else if (i == K_DRAG_RT)
-	{
 		st_img->x_ax += 5;
-	}
 	else if (i == K_DRAG_UP)
-	{
 		st_img->y_ax -= 5;
-	}
 	else if (i == K_DRAG_DW)
-	{
 		st_img->y_ax += 5;
-	}
 	st_img->draw = 1;
 	return (1);
 }
