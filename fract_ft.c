@@ -38,13 +38,12 @@ int		ft_fract_zoom(int i, int x, int y, void *param)
 	if (i == 5)
 	{
 		st_img->zoom *= 1.1;
-		st_img->draw = 1;
 	}
 	else if (i == 4)
 	{
 		st_img->zoom /= 1.1;
-		st_img->draw = 1;
 	}
+	st_img->draw = 1;
 	return (1);
 }
 
