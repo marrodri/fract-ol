@@ -64,13 +64,13 @@ typedef struct	s_thrd_arg
 	int			y;
 }				t_thrd_arg;
 
-void			fract_init(t_img *st_img, t_map *st_map, char *fract);
-int		mlx_pixel_image(int x, t_img *st_img);
+void			fract_init(t_thrd_arg *st_thrd_arg, char *fract);
+int				mlx_pixel_image(int x, t_img *st_img);
 double			ft_map(double value, double in_min, double val_max, double out_min, double out_max);
 int				ft_fract_zoom(int i, int x, int y, void *param);
 int				ft_fract_drag(int i, void *param);
 int				ft_fract_cursor(int x, int y, void *param);
-void			mandelbrot_set(t_img *st_img);
+void		mandelbrot_set(t_thrd_arg **st_thrd_arg);
 void			julia_set(t_img *st_img);
 void			tricorn_set(t_img *st_img, t_map *st_map);
 void	*draw_julia(void *varg);

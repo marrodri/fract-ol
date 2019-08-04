@@ -27,8 +27,13 @@ int		esc_key(int key, void *param)
 	return (0);
 }
 
-void	fract_init(t_img *st_img, t_map *st_map, char *fract)
+void	fract_init(t_thrd_arg *st_thrd_arg, char *fract)
 {
+	t_img *st_img;
+	t_map *st_map;
+
+	st_img = st_thrd_arg->st_img;
+	st_map = st_thrd_arg->st_map;
 	st_img->p_mlx = mlx_init();
 	st_img->p_img = mlx_new_image(st_img->p_mlx, WIN_SZ, WIN_SZ);
 	st_img->addr = mlx_get_data_addr(st_img->p_img, &st_img->bpp,
@@ -37,17 +42,18 @@ void	fract_init(t_img *st_img, t_map *st_map, char *fract)
 	st_img->bpp /= 8;
 	if (!ft_strcmp(fract, "mandelbrot"))
 	{
-		mandelbrot_set(st_img);
+		mandelbrot_set(&st_thrd_arg);
 	}
 	else if (!ft_strcmp(fract, "julia"))
 	{
-		julia_set(st_img);
+		// julia_set(st_img);
 	}
 	else if (!ft_strcmp(fract, "tricorn"))
 	{
-		tricorn_set(st_img, st_map);
+		// tricorn_set(st_img, st_map);
 	}
 	mlx_key_hook(st_img->p_win, esc_key, (void *)0);
 	mlx_hook(st_img->p_win, 17, (1L << 17), close_win_x, (void*)0);
+	// printf("here mate\n");
 	mlx_loop(st_img->p_mlx);
 }
