@@ -32,8 +32,10 @@ int		ft_fract_zoom(int i, int x, int y, void *param)
 	t_img		*st_img;
 
 	st_img = (param);
-	st_img->mouse_x = x;
-	st_img->mouse_y = y;
+	// st_img->mouse_x = x;
+	// st_img->mouse_y = y;
+	x =0;
+	y = 0;
 	printf("mouse_x|%f| mouse_y|%f|\n", st_img->mouse_x, st_img->mouse_y);
 	if (i == 5)
 	{
