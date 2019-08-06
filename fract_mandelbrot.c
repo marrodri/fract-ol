@@ -54,8 +54,8 @@ void		*draw_mand(void *varg)
 		st_img->y = 0;
 		while (st_img->y < WIN_SZ)
 		{
-			st_img->x0 = ft_map(st_img->x, (st_img->x_ax) * (st_img->zoom), (WIN_SZ + st_img->x_ax) * st_img->zoom, -2.5, 1);
-			st_img->y0 = ft_map(st_img->y, (st_img->y_ax) * (st_img->zoom), (WIN_SZ + st_img->y_ax) * st_img->zoom, -1.5, 1.5);
+			st_img->x0 = ft_map(st_img->x, (st_img->x_ax) * (st_img->zoom_x), (WIN_SZ + st_img->x_ax) * st_img->zoom_x, -2.5, 1);
+			st_img->y0 = ft_map(st_img->y, (st_img->y_ax) * (st_img->zoom_y), (WIN_SZ + st_img->y_ax) * st_img->zoom_y, -1.5, 1.5);
 			st_img->color = color_iter_mand(st_img->color, st_img);
 			mlx_pixel_image(st_img);
 			st_img->y++;
@@ -108,6 +108,7 @@ void		mandelbrot_set(t_thrd_arg **st_thrd_arg)
 	thread_mand(*st_thrd_arg);
 	mlx_hook((*st_thrd_arg)->st_img->p_win, 2, 2, ft_fract_drag, (void*)(*st_thrd_arg)->st_img);
 	mlx_hook((*st_thrd_arg)->st_img->p_win, 4, (1L << 4), ft_fract_zoom, (void*)(*st_thrd_arg)->st_img);
+	mlx_hook((*st_thrd_arg)->st_img->p_win, 6, (1L << 6), ft_fract_cursor, (void*)(*st_thrd_arg)->st_img);
 	mlx_loop_hook((*st_thrd_arg)->st_img->p_mlx, loop_mand, (*st_thrd_arg));
 }
 

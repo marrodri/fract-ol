@@ -37,6 +37,8 @@ typedef	struct	s_img
 	int			endn;
 	int			sl;
 	double		zoom;
+	double		zoom_x;
+	double		zoom_y;
 	double		x_ax;
 	double		y_ax;
 	double		x0;

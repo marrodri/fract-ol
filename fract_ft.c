@@ -27,23 +27,35 @@ double	ft_map(double value, double in_min, double in_max, double out_min, double
 	return ((value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
 }
 
+// void src_to_obj(double *mx0, double *my0, t_img *st_img)
+// {
+// 	*mx0 = (st_img->mouse_x - st_img->zoom_x)/st_img->zoom;
+// 	*mx0 = (st_img->mouse_y - st_img->zoom_y)/st_img->zoom;
+// }
+
 int		ft_fract_zoom(int i, int x, int y, void *param)
 {
 	t_img		*st_img;
+	double		mx0;
+	double		my0;
+
 
 	st_img = (param);
-	// st_img->mouse_x = x;
-	// st_img->mouse_y = y;
 	x =0;
-	y = 0;
+	y =0;
+	mx0 = st_img->mouse_x /100;
+	my0 = st_img->mouse_y /100;
 	printf("mouse_x|%f| mouse_y|%f|\n", st_img->mouse_x, st_img->mouse_y);
-	if (i == 5)
+	if (i == 4)
 	{
-		st_img->zoom *= 1.1;
+
+		st_img->zoom_x *= (mx0); //zoomin
+		st_img->zoom_y *= (my0);
 	}
-	else if (i == 4)
+	else if (i == 5) //zoomout
 	{
-		st_img->zoom /= 1.1;
+		st_img->zoom_x /= (mx0);
+		st_img->zoom_y /= (my0);
 	}
 	st_img->draw = 1;
 	return (1);
