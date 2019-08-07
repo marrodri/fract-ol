@@ -18,7 +18,7 @@
 # define K_DRAG_DW	125
 # define K_DRAG_LF	123
 # define K_DRAG_RT	124
-#define THREADS		8
+# define THREADS	8
 # include <pthread.h>
 # include <math.h>
 # include "libft/libft.h"
@@ -36,7 +36,6 @@ typedef	struct	s_img
 	int			bpp;
 	int			endn;
 	int			sl;
-
 }				t_img;
 
 typedef struct	s_map_x
@@ -78,7 +77,6 @@ void			julia_set(t_thrd_arg **st_thrd_arg);
 void			tricorn_set(t_thrd_arg **st_thrd_arg);
 void			*draw_julia(void *varg);
 void			*draw_mand(void *varg);
-
-double			ft_map(double value, double in_min, double in_max, double out_min, double out_max);
-
+double			ft_map(double value, double in_min, double in_max,
+		double out_min, double out_max);
 #endif

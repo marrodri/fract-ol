@@ -56,8 +56,10 @@ void		*draw_mand(void *varg)
 		st_img->y = 0;
 		while (st_img->y < WIN_SZ)
 		{
-			fract->x0 = ft_map(st_img->x, (fract->x_ax) * (fract->zoom), (WIN_SZ + fract->x_ax) * fract->zoom, -2.5, 1);
-			fract->y0 = ft_map(st_img->y, (fract->y_ax) * (fract->zoom), (WIN_SZ + fract->y_ax) * fract->zoom, -1.5, 1.5);
+			fract->x0 = ft_map(st_img->x, (fract->x_ax) * (fract->zoom),
+					(WIN_SZ + fract->x_ax) * fract->zoom, -2.5, 1);
+			fract->y0 = ft_map(st_img->y, (fract->y_ax) * (fract->zoom),
+					(WIN_SZ + fract->y_ax) * fract->zoom, -1.5, 1.5);
 			fract->color = color_iter_mand(fract->color, fract);
 			mlx_pixel_image(st_img, fract);
 			st_img->y++;
@@ -67,7 +69,7 @@ void		*draw_mand(void *varg)
 	return (NULL);
 }
 
-void		thread_mand(t_thrd_arg	*st_thrd_arg)
+void		thread_mand(t_thrd_arg *st_thrd_arg)
 {
 	pthread_t	tid[THREADS];
 	int			i;
@@ -85,8 +87,8 @@ void		thread_mand(t_thrd_arg	*st_thrd_arg)
 
 int			loop_mand(t_thrd_arg *st_thrd_arg)
 {
-	t_img *st_img;
-	t_fract *fract;
+	t_img	*st_img;
+	t_fract	*fract;
 
 	fract = st_thrd_arg->fract;
 	st_img = st_thrd_arg->st_img;
@@ -102,8 +104,8 @@ int			loop_mand(t_thrd_arg *st_thrd_arg)
 
 void		mandelbrot_set(t_thrd_arg **st_thrd_arg)
 {
-	t_img *st_img;
-	t_fract *fract;
+	t_img	*st_img;
+	t_fract	*fract;
 
 	st_img = (*st_thrd_arg)->st_img;
 	fract = (*st_thrd_arg)->fract;
@@ -115,4 +117,3 @@ void		mandelbrot_set(t_thrd_arg **st_thrd_arg)
 	mlx_hook(st_img->p_win, 6, (1L << 6), ft_fract_cursor, (void*)fract);
 	mlx_loop_hook(st_img->p_mlx, loop_mand, (*st_thrd_arg));
 }
-

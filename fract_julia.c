@@ -83,8 +83,8 @@ void	thread_julia(t_thrd_arg *st_thrd_arg)
 
 int		loop_jul(t_thrd_arg *st_thrd_arg)
 {
-	t_img *st_img;
-	t_fract *fract;
+	t_img	*st_img;
+	t_fract	*fract;
 
 	fract = st_thrd_arg->fract;
 	st_img = st_thrd_arg->st_img;
@@ -100,8 +100,8 @@ int		loop_jul(t_thrd_arg *st_thrd_arg)
 
 void	julia_set(t_thrd_arg **st_thrd_arg)
 {
-	t_img *st_img;
-	t_fract *fract;
+	t_img	*st_img;
+	t_fract	*fract;
 
 	st_img = (*st_thrd_arg)->st_img;
 	fract = (*st_thrd_arg)->fract;

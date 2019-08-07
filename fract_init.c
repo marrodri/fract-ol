@@ -27,7 +27,7 @@ int		esc_key(int key, void *param)
 	return (0);
 }
 
-t_fract *fract_setup(t_fract *fract)
+t_fract	*fract_setup(t_fract *fract)
 {
 	fract->zoom = 1;
 	fract->x0 = 0.0;
@@ -40,8 +40,8 @@ t_fract *fract_setup(t_fract *fract)
 
 void	fract_init(t_thrd_arg *st_thrd_arg, char *argv)
 {
-	t_img *st_img;
-	t_map *st_map;
+	t_img	*st_img;
+	t_map	*st_map;
 	t_fract *fract;
 
 	fract = st_thrd_arg->fract;
