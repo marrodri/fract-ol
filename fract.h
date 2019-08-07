@@ -36,17 +36,7 @@ typedef	struct	s_img
 	int			bpp;
 	int			endn;
 	int			sl;
-	double		zoom;
-	double		zoom_x;
-	double		zoom_y;
-	double		x_ax;
-	double		y_ax;
-	double		x0;
-	double		y0;
-	int			color;
-	double		mouse_x;
-	double		mouse_y;
-	int			draw;
+
 }				t_img;
 
 typedef struct	s_map_x
@@ -58,14 +48,28 @@ typedef struct	s_map_x
 	double		in_max;
 }				t_map;
 
+typedef struct	s_fract
+{
+	double		zoom;
+	double		x_ax;
+	double		y_ax;
+	double		x0;
+	double		y0;
+	int			color;
+	double		mouse_x;
+	double		mouse_y;
+	int			draw;
+}				t_fract;
+
 typedef struct	s_thrd_arg
 {
+	t_fract		*fract;
 	t_img		*st_img;
 	t_map		*st_map;
 }				t_thrd_arg;
 
 void			fract_init(t_thrd_arg *st_thrd_arg, char *fract);
-int				mlx_pixel_image(t_img *st_img);
+int				mlx_pixel_image(t_img *st_img, t_fract *fract);
 int				ft_fract_zoom(int i, int x, int y, void *param);
 int				ft_fract_drag(int i, void *param);
 int				ft_fract_cursor(int x, int y, void *param);

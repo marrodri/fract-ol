@@ -32,6 +32,7 @@ int	main(int argc, char **argv)
 		st_thrd_arg = malloc(sizeof(t_thrd_arg));
 		st_thrd_arg->st_img = malloc(sizeof(t_img));
 		st_thrd_arg->st_map = malloc(sizeof(t_map));
+		st_thrd_arg->fract = malloc(sizeof(t_fract));
 		fract_init(st_thrd_arg, argv[1]);
 	}
 	else

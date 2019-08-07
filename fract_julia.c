@@ -12,7 +12,7 @@
 
 #include "fract.h"
 
-double	color_iter_jul(double color, t_img *st_img)
+double	color_iter_jul(double color, t_fract *fract)
 {
 	double	x_sq;
 	double	y_sq;
@@ -21,11 +21,11 @@ double	color_iter_jul(double color, t_img *st_img)
 	i = 0;
 	while (i < MAX_I)
 	{
-		x_sq = (st_img->x0 * st_img->x0) - (st_img->y0 * st_img->y0);
-		y_sq = 2 * st_img->x0 * st_img->y0;
-		st_img->x0 = x_sq - st_img->mouse_x;
-		st_img->y0 = y_sq - st_img->mouse_y;
-		if ((st_img->x0 * st_img->x0) + (st_img->y0 * st_img->y0) > 16)
+		x_sq = (fract->x0 * fract->x0) - (fract->y0 * fract->y0);
+		y_sq = 2 * fract->x0 * fract->y0;
+		fract->x0 = x_sq - fract->mouse_x;
+		fract->y0 = y_sq - fract->mouse_y;
+		if ((fract->x0 * fract->x0) + (fract->y0 * fract->y0) > 16)
 			break ;
 		i++;
 	}
@@ -41,21 +41,23 @@ void	*draw_julia(void *varg)
 	t_map		*st_map;
 	t_thrd_arg	*st_thrd_arg;
 	t_img		*st_img;
+	t_fract		*fract;
 
 	st_thrd_arg = varg;
 	st_img = st_thrd_arg->st_img;
 	st_map = st_thrd_arg->st_map;
+	fract = st_thrd_arg->fract;
 	while (st_img->x < WIN_SZ)
 	{
 		st_img->y = 0;
 		while (st_img->y < WIN_SZ)
 		{
-			st_img->x0 = ft_map(st_img->x, (st_img->x_ax) * (st_img->zoom),
-					(WIN_SZ + st_img->x_ax) * (st_img->zoom), -2, 2);
-			st_img->y0 = ft_map(st_img->y, (st_img->y_ax) * (st_img->zoom),
-					(WIN_SZ + st_img->y_ax) * (st_img->zoom), -1.5, 1.5);
-			st_img->color = color_iter_jul(st_img->color, st_img);
-			mlx_pixel_image(st_img);
+			fract->x0 = ft_map(st_img->x, (fract->x_ax) * (fract->zoom),
+					(WIN_SZ + fract->x_ax) * (fract->zoom), -2, 2);
+			fract->y0 = ft_map(st_img->y, (fract->y_ax) * (fract->zoom),
+					(WIN_SZ + fract->y_ax) * (fract->zoom), -1.5, 1.5);
+			fract->color = color_iter_jul(fract->color, fract);
+			mlx_pixel_image(st_img, fract);
 			st_img->y++;
 		}
 		st_img->x += THREADS;
@@ -63,7 +65,7 @@ void	*draw_julia(void *varg)
 	return (NULL);
 }
 
-void	thread_julia(t_thrd_arg	*st_thrd_arg)
+void	thread_julia(t_thrd_arg *st_thrd_arg)
 {
 	pthread_t	tid[THREADS];
 	int			i;
@@ -82,12 +84,14 @@ void	thread_julia(t_thrd_arg	*st_thrd_arg)
 int		loop_jul(t_thrd_arg *st_thrd_arg)
 {
 	t_img *st_img;
+	t_fract *fract;
 
+	fract = st_thrd_arg->fract;
 	st_img = st_thrd_arg->st_img;
-	if (st_img->draw)
+	if (fract->draw)
 	{
 		thread_julia(st_thrd_arg);
-		st_img->draw = 0;
+		fract->draw = 0;
 		mlx_put_image_to_window(st_img->p_mlx, st_img->p_win,
 			st_img->p_img, 0, 0);
 	}
@@ -96,19 +100,16 @@ int		loop_jul(t_thrd_arg *st_thrd_arg)
 
 void	julia_set(t_thrd_arg **st_thrd_arg)
 {
-	(*st_thrd_arg)->st_img->x0 = 0.0;
-	(*st_thrd_arg)->st_img->y0 = 0.0;
-	(*st_thrd_arg)->st_img->x_ax = 0;
-	(*st_thrd_arg)->st_img->y_ax = 0;
-	(*st_thrd_arg)->st_img->mouse_x = 0;
-	(*st_thrd_arg)->st_img->mouse_y = 0;
-	(*st_thrd_arg)->st_img->color = 0xFFFFFF;
-	(*st_thrd_arg)->st_img->p_win = mlx_new_window((*st_thrd_arg)->st_img->p_mlx, WIN_SZ, WIN_SZ, "julia");
-	(*st_thrd_arg)->st_img->draw = 1;
+	t_img *st_img;
+	t_fract *fract;
 
+	st_img = (*st_thrd_arg)->st_img;
+	fract = (*st_thrd_arg)->fract;
+	st_img->p_win = mlx_new_window(st_img->p_mlx, WIN_SZ, WIN_SZ, "julia");
+	fract->draw = 1;
 	thread_julia(*st_thrd_arg);
-	mlx_hook((*st_thrd_arg)->st_img->p_win, 2, 2, ft_fract_drag, (void*)(*st_thrd_arg)->st_img);
-	mlx_hook((*st_thrd_arg)->st_img->p_win, 4, (1L << 4), ft_fract_zoom, (void*)(*st_thrd_arg)->st_img);
-	mlx_hook((*st_thrd_arg)->st_img->p_win, 6, (1L << 6), ft_fract_cursor, (void*)(*st_thrd_arg)->st_img);
-	mlx_loop_hook((*st_thrd_arg)->st_img->p_mlx, loop_jul, (*st_thrd_arg));
+	mlx_hook(st_img->p_win, 2, 2, ft_fract_drag, (void*)fract);
+	mlx_hook(st_img->p_win, 4, (1L << 4), ft_fract_zoom, (void*)fract);
+	mlx_hook(st_img->p_win, 6, (1L << 6), ft_fract_cursor, (void*)fract);
+	mlx_loop_hook(st_img->p_mlx, loop_jul, (*st_thrd_arg));
 }
