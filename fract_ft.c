@@ -41,21 +41,22 @@ int		ft_fract_zoom(int i, int x, int y, void *param)
 
 
 	st_img = (param);
-	x =0;
-	y =0;
-	mx0 = st_img->mouse_x /100;
-	my0 = st_img->mouse_y /100;
 	printf("mouse_x|%f| mouse_y|%f|\n", st_img->mouse_x, st_img->mouse_y);
+	printf("x|%d| y|%d|\n", x, y);
 	if (i == 4)
 	{
-
-		st_img->zoom_x *= (mx0); //zoomin
-		st_img->zoom_y *= (my0);
+		mx0 = ((st_img->mouse_x - st_img->x0) / st_img->zoom); //zoomin
+		my0 = ((st_img->mouse_y - st_img->y0) / st_img->zoom);
+		printf("mx0|%f| my0|%f|\n", mx0, my0);
+		st_img->zoom *= 1.1;
+		mx0 = st_img->x0 + (mx0 * st_img->zoom);
+		my0 = st_img->y0 + (my0 * st_img->zoom);
+		st_img->x_ax += mx0 - st_img->mouse_x;
+		st_img->y_ax += my0 - st_img->mouse_y;
 	}
-	else if (i == 5) //zoomout
+	else if (i == 5)
 	{
-		st_img->zoom_x /= (mx0);
-		st_img->zoom_y /= (my0);
+		st_img->zoom /= 1.1;
 	}
 	st_img->draw = 1;
 	return (1);
