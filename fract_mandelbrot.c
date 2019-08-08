@@ -40,7 +40,7 @@ double		color_iter_mand(double color, t_fract *fract)
 	return (color);
 }
 
-double 	set_xmap(t_map **st_map, t_img *st_img, t_fract *fract)
+double 	set_xmap_m(t_map **st_map, t_img *st_img, t_fract *fract)
 {
 	(*st_map)->value = st_img->x;
 	(*st_map)->in_min = (fract->x_ax) * (fract->zoom);
@@ -50,7 +50,7 @@ double 	set_xmap(t_map **st_map, t_img *st_img, t_fract *fract)
 	return ft_map(*st_map);
 }
 
-double 	set_ymap(t_map **st_map, t_img *st_img, t_fract *fract)
+double 	set_ymap_m(t_map **st_map, t_img *st_img, t_fract *fract)
 {
 	(*st_map)->value = st_img->y;
 	(*st_map)->in_min = (fract->y_ax) * (fract->zoom);
@@ -76,8 +76,8 @@ void		*draw_mand(void *varg)
 		st_img->y = 0;
 		while (st_img->y < WIN_SZ)
 		{
-			fract->x0 = set_xmap(&st_map, st_img, fract);
-			fract->y0 = set_ymap(&st_map, st_img, fract);
+			fract->x0 = set_xmap_m(&st_map, st_img, fract);
+			fract->y0 = set_ymap_m(&st_map, st_img, fract);
 			fract->color = color_iter_mand(fract->color, fract);
 			mlx_pixel_image(st_img, fract);
 			st_img->y++;

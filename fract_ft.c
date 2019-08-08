@@ -66,9 +66,14 @@ int		ft_fract_drag(int i, void *param)
 
 int		ft_fract_cursor(int x, int y, void *param)
 {
+	// t_thrd_arg *st_thrd_arg;
 	t_fract	*fract;
+	// t_map	*st_map;
 
 	fract = (param);
+	// fract = st_thrd_arg->fract;
+	// st_map = st_thrd_arg->st_map;
+
 	// st_map->value = x;
 	// st_map->in_min = 0;
 	// st_map->in_max = 1000;
@@ -76,19 +81,11 @@ int		ft_fract_cursor(int x, int y, void *param)
 	// st_map->out_max = 2;
 	// x = 0;
 	// y = 0;
-	fract->mouse_x = (x - 0) * (2 - (-2)) / (1000 - 0) + -2; 
+	// fract->mouse_x = ft_map(x, 0, 1000, -2, 2);
+	// fract->mouse_y = ft_map(y, 0, 1000, -1.5, 1.5);
 
-	// st_map->value = x;
-	// st_map->in_min = 0;
-	// st_map->in_max = 1000;
-	// st_map->out_min = -1.5;
-	// st_map->out_max = 1.5;
+	fract->mouse_x = (x - 0) * (2 - (-2)) / (1000 - 0) + -2; 
 	fract->mouse_y = (y - 0) * (1.5 - (-1.5)) / (1000 - 0) + -1.5; 
 	fract->draw = 1;
 	return (1);
-}
-
-void	color_change()
-{
-	return NULL;
 }
