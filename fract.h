@@ -73,10 +73,7 @@ int				ft_fract_zoom(int i, int x, int y, void *param);
 int				ft_fract_drag(int i, void *param);
 int				ft_fract_cursor(int x, int y, void *param);
 void			mandelbrot_set(t_thrd_arg **st_thrd_arg);
-void			julia_set(t_thrd_arg **st_thrd_arg);
-void			tricorn_set(t_thrd_arg **st_thrd_arg);
-void			*draw_julia(void *varg);
-void			*draw_mand(void *varg);
-double			ft_map(double value, double in_min, double in_max,
-		double out_min, double out_max);
+// void			julia_set(t_thrd_arg **st_thrd_arg);
+// void			tricorn_set(t_thrd_arg **st_thrd_arg);
+double	ft_map(t_map *st_map);
 #endif
