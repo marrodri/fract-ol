@@ -13,7 +13,7 @@
 #ifndef FRACT_H
 # define FRACT_H
 # define WIN_SZ		1000
-# define MAX_I		256
+# define MAX_I		1000
 # define K_DRAG_UP	126
 # define K_DRAG_DW	125
 # define K_DRAG_LF	123
@@ -55,6 +55,7 @@ typedef struct	s_fract
 	double		x0;
 	double		y0;
 	int			color;
+	int			color_set;
 	double		mouse_x;
 	double		mouse_y;
 	int			draw;

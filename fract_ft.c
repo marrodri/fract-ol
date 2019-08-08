@@ -24,7 +24,8 @@ int		mlx_pixel_image(t_img *st_img, t_fract *fract)
 
 double	ft_map(t_map *st_map)
 {
-	return ((st_map->value - st_map->in_min) * (st_map->out_max - st_map->out_min) / (st_map->in_max - st_map->in_min) + st_map->out_min);
+	return ((st_map->value - st_map->in_min) * (st_map->out_max - st_map->out_min) /
+		(st_map->in_max - st_map->in_min) + st_map->out_min);
 }
 
 int		ft_fract_zoom(int i, int x, int y, void *param)
@@ -68,10 +69,26 @@ int		ft_fract_cursor(int x, int y, void *param)
 	t_fract	*fract;
 
 	fract = (param);
-	x =0;
-	y =0;
-	// fract->mouse_x = ft_map(x, 0, 1000, -2, 2);
-	// fract->mouse_y = ft_map(y, 0, 1000, -1.5, 1.5);
+	// st_map->value = x;
+	// st_map->in_min = 0;
+	// st_map->in_max = 1000;
+	// st_map->out_min = -2;
+	// st_map->out_max = 2;
+	// x = 0;
+	// y = 0;
+	fract->mouse_x = (x - 0) * (2 - (-2)) / (1000 - 0) + -2; 
+
+	// st_map->value = x;
+	// st_map->in_min = 0;
+	// st_map->in_max = 1000;
+	// st_map->out_min = -1.5;
+	// st_map->out_max = 1.5;
+	fract->mouse_y = (y - 0) * (1.5 - (-1.5)) / (1000 - 0) + -1.5; 
 	fract->draw = 1;
 	return (1);
+}
+
+void	color_change()
+{
+	return NULL;
 }

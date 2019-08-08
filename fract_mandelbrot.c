@@ -34,7 +34,7 @@ double		color_iter_mand(double color, t_fract *fract)
 		i++;
 	}
 	color = (i - 0) * (MAX_I - 0) / (MAX_I - 0) + 0;
-	color = (sqrt(color) - 0) * (0x80ff00 - 0) / (MAX_I - 0) + 0;
+	color = (sqrt(color) - 0) * (fract->color_set - 0) / (MAX_I - 0) + 0;
 	if (i == MAX_I)
 		color = 0;
 	return (color);
