@@ -58,7 +58,7 @@ void	fract_init(t_thrd_arg *st_thrd_arg, char *argv)
 	else if (!ft_strcmp(argv, "julia"))
 		julia_set(&st_thrd_arg);
 	// else if (!ft_strcmp(argv, "tricorn"))
-	// 	tricorn_set(&st_thrd_arg);
+		// tricorn_set(&st_thrd_arg);
 	mlx_key_hook(st_img->p_win, esc_key, (void *)0);
 	mlx_hook(st_img->p_win, 17, (1L << 17), close_win_x, (void*)0);
 	mlx_loop(st_img->p_mlx);
