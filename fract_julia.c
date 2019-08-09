@@ -31,7 +31,7 @@ double	color_iter_jul(double color, t_fract *fract)
 	}
 		// color = ft_map(i, 0, MAX_I, 0, 1);
 	// color = ft_map(sqrt(color), 0, 1, 0, 0xFFFFFF);
-	color = (i - 0) * (1 - 0) / (MAX_I - 0) + 0;
+	color = (i) * (MAX_I) / (1. - 0) + 0;
 	color = (sqrt(color) - 0) * (fract->color_set - 0) / (1 - 0) + 0;
 	if (i == MAX_I)
 		color = 0;

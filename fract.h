@@ -13,7 +13,7 @@
 #ifndef FRACT_H
 # define FRACT_H
 # define WIN_SZ		1000
-# define MAX_I		1000
+# define MAX_I		1000.
 # define K_DRAG_UP	126
 # define K_DRAG_DW	125
 # define K_DRAG_LF	123
