@@ -34,7 +34,7 @@ t_fract	*fract_setup(t_fract *fract)
 	fract->y0 = 0.0;
 	fract->x_ax = 0;
 	fract->y_ax = 0;
-	fract->color_set =  0x80ff00;//0xff0000; 0x80ff00
+	fract->color_set = 0x80ff00;
 	return (fract);
 }
 

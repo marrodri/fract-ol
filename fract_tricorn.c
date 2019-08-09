@@ -58,10 +58,6 @@ void		*draw_tri(void *varg)
 		{
 			fract->x0 = set_xmap_m(&st_map, st_img, fract);
 			fract->y0 = set_ymap_m(&st_map, st_img, fract);
-			// fract->x0 = ft_map(st_img->x, fract->x_ax * (fract->zoom),
-			// 	(WIN_SZ + fract->x_ax) * fract->zoom, -2.0, 1.5);
-			// fract->y0 = ft_map(st_img->y, fract->y_ax * (fract->zoom),
-				// (WIN_SZ + fract->y_ax) * fract->zoom, -1.5, 1.5);
 			fract->color = color_iter_tri(fract->color, fract);
 			mlx_pixel_image(st_img, fract);
 			st_img->y++;

@@ -40,7 +40,6 @@ double		color_iter_mand(double color, t_fract *fract)
 	return (color);
 }
 
-
 void		*draw_mand(void *varg)
 {
 	t_thrd_arg	*st_thrd_arg;
