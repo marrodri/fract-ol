@@ -21,7 +21,7 @@ MLX = -L ./includes/minilibx_macos -lmlx -framework OpenGl -framework AppKit
 
 SRC = fract_main.c fract_init.c fract_ft.c \
 		 fract_mandelbrot.c fract_julia.c \
-		#fract_tricorn.c 
+		 fract_map.c fract_tricorn.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -13,7 +13,7 @@
 #ifndef FRACT_H
 # define FRACT_H
 # define WIN_SZ		1000
-# define MAX_I		1000.
+# define MAX_I		1000
 # define K_DRAG_UP	126
 # define K_DRAG_DW	125
 # define K_DRAG_LF	123
@@ -75,6 +75,8 @@ int				ft_fract_drag(int i, void *param);
 int				ft_fract_cursor(int x, int y, void *param);
 void			mandelbrot_set(t_thrd_arg **st_thrd_arg);
 void			julia_set(t_thrd_arg **st_thrd_arg);
-// void			tricorn_set(t_thrd_arg **st_thrd_arg);
+void			tricorn_set(t_thrd_arg **st_thrd_arg);
+double		set_xmap_m(t_map **st_map, t_img *st_img, t_fract *fract);
+double		set_ymap_m(t_map **st_map, t_img *st_img, t_fract *fract);
 double	ft_map(t_map *st_map);
 #endif

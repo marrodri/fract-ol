@@ -34,7 +34,7 @@ t_fract	*fract_setup(t_fract *fract)
 	fract->y0 = 0.0;
 	fract->x_ax = 0;
 	fract->y_ax = 0;
-	fract->color_set = 0xff0000;
+	fract->color_set =  0x80ff00;//0xff0000; 0x80ff00
 	return (fract);
 }
 
@@ -57,8 +57,8 @@ void	fract_init(t_thrd_arg *st_thrd_arg, char *argv)
 		mandelbrot_set(&st_thrd_arg);
 	else if (!ft_strcmp(argv, "julia"))
 		julia_set(&st_thrd_arg);
-	// else if (!ft_strcmp(argv, "tricorn"))
-		// tricorn_set(&st_thrd_arg);
+	else if (!ft_strcmp(argv, "tricorn"))
+		tricorn_set(&st_thrd_arg);
 	mlx_key_hook(st_img->p_win, esc_key, (void *)0);
 	mlx_hook(st_img->p_win, 17, (1L << 17), close_win_x, (void*)0);
 	mlx_loop(st_img->p_mlx);

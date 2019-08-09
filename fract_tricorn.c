@@ -33,8 +33,8 @@ double		color_iter_tri(double color, t_fract *fract)
 			break ;
 		i++;
 	}
-	color = ft_map(i, 0, MAX_I, 0, 1);
-	color = ft_map(sqrt(color), 0, 1, 0, 0x80ff00);
+	color = i * MAX_I / 1.;
+	color = sqrt(color) * fract->color_set / 1.;
 	if (i == MAX_I)
 		color = 0;
 	return (color);
@@ -44,20 +44,24 @@ void		*draw_tri(void *varg)
 {
 	t_thrd_arg	*st_thrd_arg;
 	t_img		*st_img;
+	t_map		*st_map;
 	t_fract		*fract;
 
 	st_thrd_arg = varg;
 	st_img = st_thrd_arg->st_img;
+	st_map = st_thrd_arg->st_map;
 	fract = st_thrd_arg->fract;
 	while (st_img->x < WIN_SZ)
 	{
 		st_img->y = 0;
 		while (st_img->y < WIN_SZ)
 		{
-			fract->x0 = ft_map(st_img->x, fract->x_ax * (fract->zoom),
-					(WIN_SZ + fract->x_ax) * fract->zoom, -2.0, 1.5);
-			fract->y0 = ft_map(st_img->y, fract->y_ax * (fract->zoom),
-					(WIN_SZ + fract->y_ax) * fract->zoom, -1.5, 1.5);
+			fract->x0 = set_xmap_m(&st_map, st_img, fract);
+			fract->y0 = set_ymap_m(&st_map, st_img, fract);
+			// fract->x0 = ft_map(st_img->x, fract->x_ax * (fract->zoom),
+			// 	(WIN_SZ + fract->x_ax) * fract->zoom, -2.0, 1.5);
+			// fract->y0 = ft_map(st_img->y, fract->y_ax * (fract->zoom),
+				// (WIN_SZ + fract->y_ax) * fract->zoom, -1.5, 1.5);
 			fract->color = color_iter_tri(fract->color, fract);
 			mlx_pixel_image(st_img, fract);
 			st_img->y++;
